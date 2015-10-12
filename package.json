@@ -1,0 +1,23 @@
+{
+  "name": "ntuee_exams",
+  "version": "1.0.0",
+  "description": "initial version",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.13.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NTUwanderer/NTUEE_EXAMS.git"
+  },
+  "author": "Harvey, Danny",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NTUwanderer/NTUEE_EXAMS/issues"
+  },
+  "homepage": "https://github.com/NTUwanderer/NTUEE_EXAMS#readme"
+}
