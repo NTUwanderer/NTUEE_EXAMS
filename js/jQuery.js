@@ -16,7 +16,7 @@ $(document).ready(function(){
 
 function reset(){
     console.log("Semester resets. term : ", ter_sem);
-    if(ter_sem <= 2){
+    if(ter_sem < 2){
         $(".first").show();
         $(".second").hide();
     }
