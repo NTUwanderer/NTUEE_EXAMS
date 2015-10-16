@@ -1,43 +1,31 @@
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017');
+mongoose.connect('mongodb://localhost:27017/users');
 
 var Schema = mongoose.Schema;
-var User = new Schema({
-  id       : String
+var users = new Schema({
+   id      : String
   ,name    : String
-  ,content : {
-    gradeOne : { 
-      微積分 : { type: Number, default: 0} 
-    }
-    gradetwo : {
-      電子學 : { type: Number, default: 0}
-    }
-    gradeThr : {
-      
-    }
-    gradeFou :{ }
-    chosen   :{ }
-  }
-  ,stats   : { type: Number, default: 0}
+  ,content : 
 );
 
-User.post('save', function(user){
+users.post('save', function(user){
   console.log("user : " ,user ," has been saved. ");
 })
 
-
 //mongoose model
-var database = mongoose.model('EXAM_account', User);
+var database = mongoose.model('userDB', users);
 
 //database.remove({},function(err){console.log("remove");});;
-/*var Test = new database();
+/*
+  var Test = new database();
   Test.id = "005";
   Test.name = "test5";
   Test.exp  = 50000;
   Test.save(function(Err){
   console.log(Err);
-  });*/
+  });
+*/
 
 
 module.exports = {
@@ -81,30 +69,16 @@ module.exports = {
       });
       socket.on('score', function(data, callback){
         database.findOne({id : data.id}, function(err, user){
-          user.exp = user.exp + data.bonus;//).parseInt();
-          if(user.exp < 50)user.exp = 50;
-          while(user.rank < 99 && user.exp >= rankThreshold[user.rank + 1])user.rank = user.rank + 1;
-          while(user.rank > 1 && user.exp < rankThreshold[user.rank])user.rank = user.rank - 1;
-          user.save();
-          callback(user.rank, user.exp);
-          updataCounter += 1;
-          if(updataCounter * 10 > totalUsers){
-            socket.emit('update',{});
-            updataCounter = 0;
-          }
         }) 
       });
 
     socket.on('got', function(data){
       database.findOne({id : data.id}, function(err, user){
-        user.got = data.got;//).parseInt();
-        user.save();
       }) 
     });
 
     socket.on('query', function(data, callback){
       database.find({}, 'name id rank exp', {skip: (data.page - 1) * 10, limit: 10, sort: {exp: -1}}, function(err, results){
-        callback(JSON.stringify(results), Math.ceil(totalUsers / 10));
       })
     });
     });

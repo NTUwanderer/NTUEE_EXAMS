@@ -5,11 +5,13 @@ var names = [
 "計算機程式",
 "生物科學通論",
 "普通化學丙",
+
 "微積分甲下",
 "普通物理學甲下",
-
 "計算機概論",
 "工程數學-線性代數",
+
+"電子學一",
 "電路學",
 "工程數學-微分方程",
 "交換電路與邏輯設計",
@@ -63,6 +65,7 @@ function add(obj){
 					card_title.innerHTML = obj.innerHTML; // need to be dynamic
 						var icon = document.createElement("i");
 						icon.setAttribute("class", "material-icons right");
+            icon.setAttribute("style", "position: relative; top: 10px;")
 						icon.innerHTML = "more_vert";
 					card_title.appendChild(icon);
 				card_content.appendChild(card_title);
