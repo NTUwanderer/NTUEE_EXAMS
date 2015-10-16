@@ -1,30 +1,47 @@
-var numOfCard = 0;
-var Content = {
-  gradeOne: {
-    計算機程式:  0,
-    計算機概論:  0,
-    生物科學通論: 0,
-    化學: 0,
-    線性代數: 0
-  }
+var nameMap = new Map();
+var names = [
+"微積分甲上",
+"普通物理學甲上",
+"計算機程式",
+"生物科學通論",
+"普通化學丙",
+"微積分甲下",
+"普通物理學甲下",
+
+"計算機概論",
+"工程數學-線性代數",
+"電路學",
+"工程數學-微分方程",
+"交換電路與邏輯設計",
+
+"電子學二",
+"電磁學一",
+"信號與系統",
+"機率與統計",
+"工程數學-複變",
+"離散數學",
+
+"電子學三",
+"電磁學二"
+
+];
+
+for(var i = 0; i < names.length; i++){
+    nameMap.set(names[i], 0);
 }
+
+var numOfCard = 0;
 function add(obj){
   console.log("adding");
   console.log(obj.innerHTML);
-	var main_container = document.getElementById("main_container");
-  if(Content.gradeOne[obj.innerHTML] == 1){
-    //console.log("click ", document.getElementsByClassName(obj.innerHTML));
-    //if((document.getElementsByClassName(obj.innerHTML))[0].style.display != "none"){
-    //  (document.getElementsByClassName(obj.innerHTML))[0].style.display = "none";
-    //}
-    //else{
-    //  (document.getElementsByClassName(obj.innerHTML))[0].style.display = "inline-block"; 
-    //}
-		main_container.removeChild((document.getElementsByClassName(obj.innerHTML))[0]);
-		Content.gradeOne[obj.innerHTML] = 0;
+  var main_container = document.getElementById("main_container");
+  
+  if(nameMap.get(obj.innerHTML) == 1){
+	  main_container.removeChild((document.getElementsByClassName(obj.innerHTML))[0]);
+	  nameMap.set(obj.innerHTML, 0);
   }
   else{
-    Content.gradeOne[obj.innerHTML] = 1;
+	  nameMap.set(obj.innerHTML, 1);
 			var card = document.createElement("div");
 			card.setAttribute("id", "card"+numOfCard);
 			card.setAttribute("class", "card " + obj.innerHTML);
@@ -70,13 +87,31 @@ function add(obj){
   }
 }
 
+//上學期 期中 0
+//       期末 1
+//下學期 期中 2
+//       期末 3
+var ter_sem = 0;
+
 function term(){
   var temp = document.getElementById("term");
-  if(temp.innerHTML == "期中")	temp.innerHTML = "期末";
-  else if(temp.innerHTML== "期末")	temp.innerHTML = "期中";
+  if(temp.innerHTML == "期中") {
+    temp.innerHTML = "期末";
+    ter_sem += 1;
+  }
+  else if(temp.innerHTML== "期末") {
+    temp.innerHTML = "期中";
+    ter_sem -=1;
+  }
 }
 function semester(){
   var temp = document.getElementById("semester");
-  if(temp.innerHTML == "上學期")	temp.innerHTML = "下學期";
-  else if(temp.innerHTML== "下學期")	temp.innerHTML = "上學期";
+  if(temp.innerHTML == "上學期") {
+    temp.innerHTML = "下學期";
+    ter_sem += 2;
+  }
+  else if(temp.innerHTML== "下學期") {
+    temp.innerHTML = "上學期";
+    ter_sem -=2;
+  }
 }
