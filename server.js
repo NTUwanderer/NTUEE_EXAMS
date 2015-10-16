@@ -1,8 +1,9 @@
 var express = require('express');
-var app = express.createServer();
-var io = require('socket.io')(app);
+var app = express();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
 
-app.listen(8000, function(){
+server.listen(8000, function(){
     console.log('Listening on localhost: 8000');
 })
 
