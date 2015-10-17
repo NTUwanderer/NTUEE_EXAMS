@@ -27,9 +27,37 @@ var names = [
 "電磁學二"
 
 ];
+var pictures = [
+"images/calculus-1.jpg",  //"微積分甲上"
+"images/physics-1.jpg",   //"普通物理學甲上"
+"images/cprograming.jpg", //"計算機程式"
+"images/biology.jpg",     //"生物科學通論"
+"images/chemistry.jpg",       //"普通化學丙"
+
+"images/calculus-2.jpg",  //"微積分甲下"
+"images/physics-2.jpg",   //"普通物理學甲下"
+"images/cscience.jpg",    //"計算機概論"
+"images/linear.jpg",      //"工程數學-線性代數"
+
+"images/electron-1.jpg",  //"電子學一"
+"images/circuit.jpg",     //"電路學"
+"images/diff.jpg",        //"工程數學-微分方程"
+"images/logic.jpg",       //"交換電路與邏輯設計"
+
+"images/electron-2.jpg",  //"電子學二"
+"images/electrom-1.jpg",  //"電磁學一"
+"images/signal.jpg",      //"信號與系統"
+"images/probability.jpg", //"機率與統計"
+"images/complex.jpg",     //"工程數學-複變"
+"images/discrete.jpg",    //"離散數學"
+
+"images/electron-3.jpg",  //"電子學三"
+"images/electrom-2.jpg"   //"電磁學二"
+
+];
 
 for(var i = 0; i < names.length; i++){
-    nameMap.set(names[i], 0);
+    nameMap.set(names[i], [0, pictures[i]]);
 }
 
 var numOfCard = 0;
@@ -38,12 +66,12 @@ function add(obj){
   console.log(obj.innerHTML);
   var main_container = document.getElementById("main_container");
   
-  if(nameMap.get(obj.innerHTML) == 1){
+  if(nameMap.get(obj.innerHTML)[0] == 1){
 	  main_container.removeChild((document.getElementsByClassName(obj.innerHTML))[0]);
-	  nameMap.set(obj.innerHTML, 0);
+	  nameMap.set(obj.innerHTML, [0, nameMap.get(obj.innerHTML)[1]]);
   }
   else{
-	  nameMap.set(obj.innerHTML, 1);
+	  nameMap.set(obj.innerHTML, [1, nameMap.get(obj.innerHTML)[1]]);
 			var card = document.createElement("div");
 			card.setAttribute("id", "card"+numOfCard);
 			card.setAttribute("class", "card " + obj.innerHTML);
@@ -51,11 +79,12 @@ function add(obj){
 				var card_image = document.createElement("div");
 				card_image.setAttribute("class", "card-image waves-effect waves-block waves-light");
 					var img = document.createElement("img");
-					img.setAttribute("class", "activator");
-					img.setAttribute("margin", "0");
-					img.setAttribute("bolder", "0");
-					img.setAttribute("src", "images/electronics.jpg");
-					img.setAttribute("style", "width: 40%; height: auto;");
+					//img.setAttribute("class", "activator");
+					//img.setAttribute("margin", "0");
+					//img.setAttribute("bolder", "0");
+					img.setAttribute("class", "size-Subject");
+					img.setAttribute("src", nameMap.get(obj.innerHTML)[1]);
+					//img.setAttribute("style", "width: 40%; height: auto;");
 				card_image.appendChild(img);
 			card.appendChild(card_image);
 				var card_content = document.createElement("div");

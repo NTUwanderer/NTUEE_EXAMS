@@ -11,6 +11,15 @@
     <link href="css/ghpages-materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="css/main.css" type="text/css" rel="stylesheet"/>
+		
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js" ></script>
+		<script type='text/javascript' src='js/jquery.mu.image.resize.js'></script>
+		<script>
+			$(function(){			
+				$('.size-Logo').muImageResize({width: 100, height:75});
+				$('.size-Subject').muImageResize({width: 100, height:75});
+			});
+		</script>
   </head>
   <body>
     <header>
@@ -22,7 +31,7 @@
             <!--
               <object id="front-page-logo" type="image/svg+xml" data="res/materialize.svg">Your browser does not support SVG</object>
             -->
-            <img margin="0" bolder="0" src="./images/study.jpg" style="width: auto; height: 100%;">
+            <img src="./images/study.jpg" class="size-Logo">
           </a>
         </li>
 
@@ -142,7 +151,7 @@
     
 
     <!--  Scripts-->
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    
     <script src="js/materialize.js"></script>
     <script src="js/init.js"></script>
 
