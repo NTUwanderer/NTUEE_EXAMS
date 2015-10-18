@@ -1,5 +1,4 @@
 var nameMap = new Map();
-
 var subjects = [
 	// 中文,       English,    image location,        on screen, 上學期: false
 	["微積分甲上", "calculus1", "images/calculus1.jpg", false, false],
@@ -26,16 +25,28 @@ var subjects = [
 	["離散數學", "discrete", "images/discrete.jpg", false, true],
 	
 	["電子學三", "electron3", "images/electron3.jpg", false, false],
-	["電磁學二", "electrom2", "images/electrom2.jpg", false, false],
+	["電磁學二", "electrom2", "images/electrom2.jpg", false, false]
 ];
 
 for(var i = 0; i < subjects.length; i++){
     nameMap.set(subjects[i][0], i);
 }
 
+var socket = io.connect();
+socket.emit('initial', {id: "b00000000"}, function(data){
+    console.log("card init.", data);
+    if(data !== 'undefined'){
+        for(var i = 0; i < 25; i++){
+            if(data[i] == true){
+                add(document.getElementById(subjects[i][0]));
+            }
+        }
+    }
+})
+
 function add(obj){
   console.log("adding");
-  console.log(obj.innerHTML);
+  console.log(obj);
   var main_container = document.getElementById("main_container");
 	var right_bar = document.getElementById("right_bar")
   var index = nameMap.get(obj.innerHTML);
@@ -43,7 +54,7 @@ function add(obj){
 	  main_container.removeChild(document.getElementById("card: " +　obj.innerHTML));
 	  right_bar.removeChild(document.getElementById("li: " + obj.innerHTML));
 	  subjects[index][3] = false;
-		
+      	
   }
   else{
 	  subjects[index][3] = true;
