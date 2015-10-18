@@ -6,8 +6,16 @@ var Schema = mongoose.Schema;
 var users = new Schema({
    id      : String
   ,name    : String
-  ,content : 
+  ,content : {type: Array, default: create()}
 );
+
+function create(){
+  var falses = new Array(25);
+  for(var i = 0; i < 25; i++){
+    falses[i] = false;
+  }
+  return falses;
+}
 
 users.post('save', function(user){
   console.log("user : " ,user ," has been saved. ");
@@ -29,39 +37,7 @@ var database = mongoose.model('userDB', users);
 
 
 module.exports = {
-  findOne : function(obj, func){
-    database.findOne({id : obj}, function(err, user){
-      func(err, user);
-    });  
-  },
-  findOrCreate : function(obj, func){
-    database.findOne({id : obj.id}, function(err, user){
-      //console.log(obj.id);
-      //console.log("user is ", user.name);
-      if(user === null /*|| user.name != obj.displayName*/){
-        totalUsers += 1;
-        var newUser = new database();
-        newUser.id = obj.id;
-        newUser.name = obj.displayName;
-        console.log("newUser: ", newUser);
-        newUser.save(function(Err, newUser){
-          console.log(Err);
-          if(func)func(err, newUser);
-        });
-      }
-      else{
-        //console.log(user);
-        //console.log(typeof(obj.displayName));
-        func(err, user);
-      }
-    });
-  },
   runSocket : function(io){
-    database.count({}, function(err, number){
-      //console.log(number);
-      totalUsers = number;
-    });
-    //console.log(totalUsers);
     io.on('connection', function(socket){
       console.log("Socket is connected.");
       socket.on('disconnect',function(){
@@ -71,17 +47,8 @@ module.exports = {
         database.findOne({id : data.id}, function(err, user){
         }) 
       });
-
-    socket.on('got', function(data){
-      database.findOne({id : data.id}, function(err, user){
-      }) 
-    });
-
-    socket.on('query', function(data, callback){
-      database.find({}, 'name id rank exp', {skip: (data.page - 1) * 10, limit: 10, sort: {exp: -1}}, function(err, results){
-      })
-    });
     });
   }
 };
 
+// vim: set ts=2 sw=2 sts=2 tw=0 et :

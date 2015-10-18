@@ -11,7 +11,7 @@ var exams = new Schema({
 });
 
 /*
-    physics
+普通物理學    physics
     cprogram
     biology
     chemistry
