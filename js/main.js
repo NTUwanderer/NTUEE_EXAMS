@@ -1,63 +1,36 @@
 var nameMap = new Map();
-var names = [
-"微積分甲上",
-"普通物理學甲上",
-"計算機程式",
-"生物科學通論",
-"普通化學丙",
 
-"微積分甲下",
-"普通物理學甲下",
-"計算機概論",
-"工程數學-線性代數",
+var subjects = [
+	// 中文,       English,    image location,        on screen, 上學期: false
+	["微積分甲上", "calculus1", "images/calculus1.jpg", false, false],
+	["普通物理學甲上", "physics1", "images/physics1.jpg", false, false],
+	["計算機程式", "cprograming", "images/cprograming.jpg", false, false],
+	["生物科學通論", "biology", "images/biology.jpg", false, false],
+	["普通化學丙", "chemistry", "images/chemistry.jpg", false, false],
+	
+	["微積分甲下", "calculus2", "images/calculus2.jpg", false, true],
+	["普通物理學甲下", "physics2", "images/physics2.jpg", false, true],
+	["計算機概論", "cscience", "images/cscience.jpg", false, true],
+	["工程數學-線性代數", "linear", "images/linear.jpg", false, true],
 
-"電子學一",
-"電路學",
-"工程數學-微分方程",
-"交換電路與邏輯設計",
-
-"電子學二",
-"電磁學一",
-"信號與系統",
-"機率與統計",
-"工程數學-複變",
-"離散數學",
-
-"電子學三",
-"電磁學二"
-
-];
-var pictures = [
-"images/calculus-1.jpg",  //"微積分甲上"
-"images/physics-1.jpg",   //"普通物理學甲上"
-"images/cprograming.jpg", //"計算機程式"
-"images/biology.jpg",     //"生物科學通論"
-"images/chemistry.jpg",       //"普通化學丙"
-
-"images/calculus-2.jpg",  //"微積分甲下"
-"images/physics-2.jpg",   //"普通物理學甲下"
-"images/cscience.jpg",    //"計算機概論"
-"images/linear.jpg",      //"工程數學-線性代數"
-
-"images/electron-1.jpg",  //"電子學一"
-"images/circuit.jpg",     //"電路學"
-"images/diff.jpg",        //"工程數學-微分方程"
-"images/logic.jpg",       //"交換電路與邏輯設計"
-
-"images/electron-2.jpg",  //"電子學二"
-"images/electrom-1.jpg",  //"電磁學一"
-"images/signal.jpg",      //"信號與系統"
-"images/probability.jpg", //"機率與統計"
-"images/complex.jpg",     //"工程數學-複變"
-"images/discrete.jpg",    //"離散數學"
-
-"images/electron-3.jpg",  //"電子學三"
-"images/electrom-2.jpg"   //"電磁學二"
-
+	["電子學一", "electron1", "images/electron1.jpg", false, false],
+	["電路學", "circuit", "images/circuit.jpg", false, false],
+	["工程數學-微分方程", "diff", "images/diff.jpg", false, false],
+	["交換電路與邏輯設計", "logic", "images/logic.jpg", false, false],
+	["電子學二", "electron2", "images/electron2.jpg", false, false],
+	
+	["電磁學一", "electrom1", "images/electrom1.jpg", false, true],
+	["信號與系統", "signal", "images/signal.jpg", false, true],
+	["機率與統計", "probability", "images/probability.jpg", false, true],
+	["工程數學-複變", "complex", "images/complex.jpg", false, true],
+	["離散數學", "discrete", "images/discrete.jpg", false, true],
+	
+	["電子學三", "electron3", "images/electron3.jpg", false, false],
+	["電磁學二", "electrom2", "images/electrom2.jpg", false, false],
 ];
 
-for(var i = 0; i < names.length; i++){
-    nameMap.set(names[i], [0, pictures[i]]);
+for(var i = 0; i < subjects.length; i++){
+    nameMap.set(subjects[i][0], i);
 }
 
 var numOfCard = 0;
@@ -65,13 +38,16 @@ function add(obj){
   console.log("adding");
   console.log(obj.innerHTML);
   var main_container = document.getElementById("main_container");
-  
-  if(nameMap.get(obj.innerHTML)[0] == 1){
+  var index = nameMap.get(obj.innerHTML);
+  if(subjects[index][3]){
 	  main_container.removeChild((document.getElementsByClassName(obj.innerHTML))[0]);
-	  nameMap.set(obj.innerHTML, [0, nameMap.get(obj.innerHTML)[1]]);
+	  subjects[index][3] = false;
+		
   }
   else{
-	  nameMap.set(obj.innerHTML, [1, nameMap.get(obj.innerHTML)[1]]);
+	  subjects[index][3] = true;
+		
+		
 			var card = document.createElement("div");
 			card.setAttribute("id", "card"+numOfCard);
 			card.setAttribute("class", "card " + obj.innerHTML);
@@ -83,7 +59,7 @@ function add(obj){
 					//img.setAttribute("margin", "0");
 					//img.setAttribute("bolder", "0");
 					img.setAttribute("class", "size-Subject");
-					img.setAttribute("src", nameMap.get(obj.innerHTML)[1]);
+					img.setAttribute("src", subjects[index][2]);
 					//img.setAttribute("style", "width: 40%; height: auto;");
 				card_image.appendChild(img);
 			card.appendChild(card_image);
