@@ -17,7 +17,7 @@
 		<script>
 			$(function(){			
 				$('.size-Logo').muImageResize({width: 100, height:75});
-				$('.size-Subject').muImageResize({width: 50, height:40});
+				$('.size-Subject').muImageResize({width: 50, height: 40});
 			});
 		</script>
   </head>
@@ -47,7 +47,7 @@
             <li class="bold"><a class="collapsible-header  waves-effect waves-teal">大一必修</a>
               <div class="collapsible-body">
                 <ul>
-                  <li><a class="first" onclick="add(this)">微積分甲上</a></li>
+                  <li><a id="bar-calculus1" class="first" onclick="add(this)">微積分甲上</a></li>
                   <li><a class="first" onclick="add(this)">普通物理學甲上</a></li>
                   <li><a class="first" onclick="add(this)">計算機程式</a></li>
                   <li><a class="first" onclick="add(this)">生物科學通論</a></li>
@@ -129,10 +129,8 @@
 					
           <div class="col hide-on-small-only m3 l2" style="position: relative; float:right; width: 20%">
             <div style="height: 1px">
-              <ul class="section table-of-contents">
-                <li>
-                  <a>CP 103-1(上)</a>
-                </li>
+              <ul id="right_bar" class="section table-of-contents">
+                
               </ul>
             </div>
           </div>

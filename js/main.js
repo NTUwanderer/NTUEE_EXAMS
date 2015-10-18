@@ -33,24 +33,31 @@ for(var i = 0; i < subjects.length; i++){
     nameMap.set(subjects[i][0], i);
 }
 
-var numOfCard = 0;
 function add(obj){
   console.log("adding");
   console.log(obj.innerHTML);
   var main_container = document.getElementById("main_container");
+	var right_bar = document.getElementById("right_bar")
   var index = nameMap.get(obj.innerHTML);
   if(subjects[index][3]){
-	  main_container.removeChild((document.getElementsByClassName(obj.innerHTML))[0]);
+	  main_container.removeChild(document.getElementById("card: " +　obj.innerHTML));
+	  right_bar.removeChild(document.getElementById("li: " + obj.innerHTML));
 	  subjects[index][3] = false;
 		
   }
   else{
 	  subjects[index][3] = true;
 		
+			var li = document.createElement("li");
+			li.setAttribute("id", "li: " + obj.innerHTML);
+				var a = document.createElement("a");
+				a.innerHTML = subjects[index][0];
+			li.appendChild(a);
+		right_bar.appendChild(li);
 		
 			var card = document.createElement("div");
-			card.setAttribute("id", "card"+numOfCard);
-			card.setAttribute("class", "card " + obj.innerHTML);
+			card.setAttribute("id", "card: " + obj.innerHTML);
+			card.setAttribute("class", "card");
 			card.setAttribute("style", "position: relative; display: inline-block; margin:2.5%; width:35%; height:30%");
 				var card_image = document.createElement("div");
 				card_image.setAttribute("class", "card-image waves-effect waves-block waves-light");
@@ -91,7 +98,6 @@ function add(obj){
 			card.appendChild(card_reveal);
 
     main_container.appendChild(card);
-    numOfCard ++;
   }
 }
 
