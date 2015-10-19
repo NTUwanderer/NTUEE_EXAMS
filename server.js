@@ -11,3 +11,7 @@ server.listen(8000, function(){
 app.use(express.static(__dirname + "/"));
 
 userDB.runSocket(io);
+
+var testing = require("./js/examLink.js");
+
+console.log(testing);
