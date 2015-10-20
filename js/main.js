@@ -1,4 +1,6 @@
 var nameMap = new Map();
+var examLink = require('./examLink.js');
+
 var subjects = [
 	// 中文,       English,    image location,        on screen, 上學期: false
 	["微積分甲上", "calculus1", "images/calculus1.jpg", false, false],
@@ -48,7 +50,7 @@ function add(obj){
   console.log("adding");
   console.log(obj);
   var main_container = document.getElementById("main_container");
-	var right_bar = document.getElementById("right_bar")
+	var right_bar = document.getElementById("right_bar");
   var index = nameMap.get(obj.innerHTML);
   if(subjects[index][3]){
 	  main_container.removeChild(document.getElementById("card: " +　obj.innerHTML));
@@ -73,12 +75,8 @@ function add(obj){
 				var card_image = document.createElement("div");
 				card_image.setAttribute("class", "card-image waves-effect waves-block waves-light");
 					var img = document.createElement("img");
-					//img.setAttribute("class", "activator");
-					//img.setAttribute("margin", "0");
-					//img.setAttribute("bolder", "0");
 					img.setAttribute("class", "size-Subject");
 					img.setAttribute("src", subjects[index][2]);
-					//img.setAttribute("style", "width: 40%; height: auto;");
 				card_image.appendChild(img);
 			card.appendChild(card_image);
 				var card_content = document.createElement("div");
@@ -102,6 +100,57 @@ function add(obj){
 						icon2.setAttribute("class", "material-icons right");
 						icon2.innerHTML = "close";
 					card_title2.appendChild(icon2);
+						for(var i = 0; i < examLink.length; i++){
+							if(examLink[i].name == subjects[index][1]){
+								var block = document.createElement("ul"); // whole block
+								block.setAttribute("class", "collapsible");
+								block.setAttribute("data-collapsible", "accordian");
+									var quiz = document.createElement("li");
+										var quiz_header = document.createElement("div");
+										quiz_header.setAttribute("class", "collapsible");
+										quiz_header.innerHTML = "quiz";
+											var quiz_header_i = document.createElement("i");
+											quiz_header_i.setAttribute("class", "material-icons");
+											quiz_header_i.innerHTML = filter_drama; // icon
+										quiz_header.appendChild(quiz_header_i);
+									quiz.appendChild(quiz_header);
+										var quiz_body = document.createElement("div");
+										quiz_body.setAttribute("class", "collapsible-body");
+										for(var j = 0; j < examLink[i].quiz.length; j++){
+											var subblock = document.createElement("ul");
+											subblock.setAttribute("class", "collapsible");
+											subblock.setAttribute("data-collapsible", "accordian");
+												var subquiz = document.createElement("li");
+													var subquiz_header = document.createElement("div");
+													subquiz_header.setAttribute("class", "collapsible");
+													subquiz_header.innerHTML = examLink[i].quiz[j].name;
+												subquiz.appendChild(subquiz_header);
+													var subquiz_body = document.createElement("div");
+													subquiz_body.setAttribute("class", "collapsible-body");
+													for(var k = 0; k < examLink[i].quiz[j].file.length; k++){
+														var link = document.createElement("p");
+														link.innerHTML = examLink[i].quiz[j].file[k];
+														var string = examLink[i].name + "_quiz_" + examLink[i].quiz[j].name;
+														string += "_" + examLink[i].quiz[j].file[k];
+															// string ex: biology_quiz_第一次小考_103-1
+														link.setAttribute("onclick", "add_in_right_bar(\"" + string + "\")");
+
+														subquiz_body.appendChild(link);
+													}
+												subquiz.appendChild(subquiz_body);
+											subblock.appendChild(subquiz);
+
+											quiz_body.appendChild(subblock);
+										}
+									quiz.appendChild(quiz_body);
+								block.appendChild(quiz);
+									var exam = document.createElement("li");
+									
+								block.appendChild(exam);
+								break;
+							}
+						}
+					
 						var content = document.createElement("i");
 						content.innerHTML = "links...";
 					card_title2.appendChild(content);
@@ -111,4 +160,17 @@ function add(obj){
     main_container.appendChild(card);
   }
 }
-
+function add_in_right_bar(string){
+	// string ex: biology_quiz_第一次小考_103-1
+	var right_bar = document.getElementById("right_bar");
+	var li = document.createElement("li");
+		li.setAttribute("id", "li: " + string);
+			var a = document.createElement("a");
+			a.innerHTML = string;
+			a.setAttribute("onclick", "remove_in_right_bar(\"" + string + "\")");
+		li.appendChild(a);
+	right_bar.appendChild(li);
+}
+function remove_in_right_bar(string){
+	document.getElementById("right_bar").removeChild(document.getElementById("li: " + string));
+}
