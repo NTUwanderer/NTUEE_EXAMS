@@ -1,5 +1,4 @@
 var nameMap = new Map();
-var examLink = require('./examLink.js');
 
 var subjects = [
 	// 中文,       English,    image location,        on screen, 上學期: false
@@ -61,13 +60,6 @@ function add(obj){
   else{
 	  subjects[index][3] = true;
 		
-			var li = document.createElement("li");
-			li.setAttribute("id", "li: " + obj.innerHTML);
-				var a = document.createElement("a");
-				a.innerHTML = subjects[index][0];
-			li.appendChild(a);
-		right_bar.appendChild(li);
-		
 			var card = document.createElement("div");
 			card.setAttribute("id", "card: " + obj.innerHTML);
 			card.setAttribute("class", "card");
@@ -109,10 +101,6 @@ function add(obj){
 										var quiz_header = document.createElement("div");
 										quiz_header.setAttribute("class", "collapsible");
 										quiz_header.innerHTML = "quiz";
-											var quiz_header_i = document.createElement("i");
-											quiz_header_i.setAttribute("class", "material-icons");
-											quiz_header_i.innerHTML = filter_drama; // icon
-										quiz_header.appendChild(quiz_header_i);
 									quiz.appendChild(quiz_header);
 										var quiz_body = document.createElement("div");
 										quiz_body.setAttribute("class", "collapsible-body");
@@ -147,13 +135,11 @@ function add(obj){
 									var exam = document.createElement("li");
 									
 								block.appendChild(exam);
+							card_title2.appendChild(block);	
 								break;
 							}
 						}
 					
-						var content = document.createElement("i");
-						content.innerHTML = "links...";
-					card_title2.appendChild(content);
 				card_reveal.appendChild(card_title2);
 			card.appendChild(card_reveal);
 
