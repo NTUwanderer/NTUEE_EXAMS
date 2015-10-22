@@ -98,18 +98,8 @@ function add(obj){
 				for(var i = 0; i < examLink.length; i++){
 					if(examLink[i].name == subjects[index][1]){
 						card.setAttribute("data-baseIndex", i);
-						break;
-					}
-				}
-				var baseIndex = card.getAttribute("data-baseIndex");
-					var quiz = document.createElement("ul");
-						for(var i = 0; i < examLink[baseIndex]; ++i){
-								var subquiz = document.createElement("li");
-								subquiz.setAttribute("")
-						}
-
-
-							/*
+						
+							
 							var block = document.createElement("ul"); // whole block
 							block.setAttribute("class", "collapsible");
 							block.setAttribute("data-collapsible", "accordion");
@@ -120,14 +110,7 @@ function add(obj){
 								quiz.appendChild(quiz_header);
 									var quiz_body = document.createElement("div");
 									quiz_body.setAttribute("class", "collapsible-body");
-									for(var j = 0; j < examLink[i].quiz.length; j++){
-										var h4 = document.createElement("h4");
-										h4.innerHTML = examLink[i].quiz[j].name;
-
-										quiz_body.appendChild(h4);
-									}
-							*/
-									/*
+									
 									for(var j = 0; j < examLink[i].quiz.length; j++){
 										var subblock = document.createElement("ul");
 										subblock.setAttribute("class", "collapsible");
@@ -153,9 +136,8 @@ function add(obj){
 										subblock.appendChild(subquiz);
 
 										quiz_body.appendChild(subblock);
-									}*/
-
-							/*
+									}
+							
 								quiz.appendChild(quiz_body);
 							block.appendChild(quiz);
 								var exam = document.createElement("li");
@@ -166,7 +148,7 @@ function add(obj){
 									var exam_body = document.createElement("div");
 									exam_body.setAttribute("class", "collapsible-body");
 									for(var j = 0; j < examLink[i].exam.length; j++){
-										/*
+										
 										var subblock = document.createElement("ul");
 										subblock.setAttribute("class", "collapsible");
 										subblock.setAttribute("data-collapsible", "accordion");
@@ -191,20 +173,23 @@ function add(obj){
 										subblock.appendChild(subexam);
 
 										exam_body.appendChild(subblock);
-										*/
+									}
+										
 									
-						/*
+						
 								exam.appendChild(exam_body);
 							block.appendChild(exam);
 						card_reveal.appendChild(block);
 							break;
-						*/
 						
-					
+
+					}	
+				}
 					
 			card.appendChild(card_reveal);
 
     main_container.appendChild(card);
+    enableCols();
   }
 }
 function add_in_right_bar(string){
@@ -221,3 +206,10 @@ function add_in_right_bar(string){
 function remove_in_right_bar(string){
 	document.getElementById("right_bar").removeChild(document.getElementById("li: " + string));
 }
+
+function enableCols(){
+	$('.collapsible').collapsible({
+  		accordion : false 
+	});
+}
+        
