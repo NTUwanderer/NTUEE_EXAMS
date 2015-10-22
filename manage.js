@@ -20,7 +20,7 @@ if((process.argv).length > 2){
         if(err) throw err;
         console.log("js/examLink.js is open.");
 
-        var string = "module.exports = JSON.parse(\'" + JSON.stringify(exams) + "\');";
+        var string = "var examLink = JSON.parse(\'" + JSON.stringify(exams) + "\');";
         fs.writeFile('js/examLink.js', string, 'utf8', function(err){
           if(err) throw err;
           console.log('It\'s saved!');

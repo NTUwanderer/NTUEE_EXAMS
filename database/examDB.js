@@ -24,7 +24,7 @@ exam.post('save', function(user){
 var database = mongoose.model('ALL_EXAMS', exam);
 
 //database.remove({},function(err){console.log("remove");});;
-/*var Test = new database();
+var Test = new database();
   Test.name = "calculus1";
   Test.quiz.push({
     name: "第一次小考",
@@ -37,7 +37,7 @@ var database = mongoose.model('ALL_EXAMS', exam);
   Test.save(function(Err){
     console.log(Err);
   });
-*/
+
 
 
 module.exports = {

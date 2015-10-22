@@ -1,5 +1,7 @@
 var nameMap = new Map();
 
+console.log("In main.js get examLink:", examLink);
+
 var subjects = [
 	// 中文,       English,    image location,        on screen, 上學期: false
 	["微積分甲上", "calculus1", "images/calculus1.jpg", false, false],
@@ -53,7 +55,6 @@ function add(obj){
   var index = nameMap.get(obj.innerHTML);
   if(subjects[index][3]){
 	  main_container.removeChild(document.getElementById("card: " +　obj.innerHTML));
-	  right_bar.removeChild(document.getElementById("li: " + obj.innerHTML));
 	  subjects[index][3] = false;
       	
   }
@@ -92,55 +93,115 @@ function add(obj){
 						icon2.setAttribute("class", "material-icons right");
 						icon2.innerHTML = "close";
 					card_title2.appendChild(icon2);
-						for(var i = 0; i < examLink.length; i++){
-							if(examLink[i].name == subjects[index][1]){
-								var block = document.createElement("ul"); // whole block
-								block.setAttribute("class", "collapsible");
-								block.setAttribute("data-collapsible", "accordian");
-									var quiz = document.createElement("li");
-										var quiz_header = document.createElement("div");
-										quiz_header.setAttribute("class", "collapsible");
-										quiz_header.innerHTML = "quiz";
-									quiz.appendChild(quiz_header);
-										var quiz_body = document.createElement("div");
-										quiz_body.setAttribute("class", "collapsible-body");
-										for(var j = 0; j < examLink[i].quiz.length; j++){
-											var subblock = document.createElement("ul");
-											subblock.setAttribute("class", "collapsible");
-											subblock.setAttribute("data-collapsible", "accordian");
-												var subquiz = document.createElement("li");
-													var subquiz_header = document.createElement("div");
-													subquiz_header.setAttribute("class", "collapsible");
-													subquiz_header.innerHTML = examLink[i].quiz[j].name;
-												subquiz.appendChild(subquiz_header);
-													var subquiz_body = document.createElement("div");
-													subquiz_body.setAttribute("class", "collapsible-body");
-													for(var k = 0; k < examLink[i].quiz[j].file.length; k++){
-														var link = document.createElement("p");
-														link.innerHTML = examLink[i].quiz[j].file[k];
-														var string = examLink[i].name + "_quiz_" + examLink[i].quiz[j].name;
-														string += "_" + examLink[i].quiz[j].file[k];
-															// string ex: biology_quiz_第一次小考_103-1
-														link.setAttribute("onclick", "add_in_right_bar(\"" + string + "\")");
-
-														subquiz_body.appendChild(link);
-													}
-												subquiz.appendChild(subquiz_body);
-											subblock.appendChild(subquiz);
-
-											quiz_body.appendChild(subblock);
-										}
-									quiz.appendChild(quiz_body);
-								block.appendChild(quiz);
-									var exam = document.createElement("li");
-									
-								block.appendChild(exam);
-							card_title2.appendChild(block);	
-								break;
-							}
-						}
-					
 				card_reveal.appendChild(card_title2);
+
+				for(var i = 0; i < examLink.length; i++){
+					if(examLink[i].name == subjects[index][1]){
+						card.setAttribute("data-baseIndex", i);
+						break;
+					}
+				}
+				var baseIndex = card.getAttribute("data-baseIndex");
+					var quiz = document.createElement("ul");
+						for(var i = 0; i < examLink[baseIndex]; ++i){
+								var subquiz = document.createElement("li");
+								subquiz.setAttribute("")
+						}
+
+
+							/*
+							var block = document.createElement("ul"); // whole block
+							block.setAttribute("class", "collapsible");
+							block.setAttribute("data-collapsible", "accordion");
+								var quiz = document.createElement("li");
+									var quiz_header = document.createElement("div");
+									quiz_header.setAttribute("class", "collapsible-header");
+									quiz_header.innerHTML = "quiz" + index;
+								quiz.appendChild(quiz_header);
+									var quiz_body = document.createElement("div");
+									quiz_body.setAttribute("class", "collapsible-body");
+									for(var j = 0; j < examLink[i].quiz.length; j++){
+										var h4 = document.createElement("h4");
+										h4.innerHTML = examLink[i].quiz[j].name;
+
+										quiz_body.appendChild(h4);
+									}
+							*/
+									/*
+									for(var j = 0; j < examLink[i].quiz.length; j++){
+										var subblock = document.createElement("ul");
+										subblock.setAttribute("class", "collapsible");
+										subblock.setAttribute("data-collapsible", "accordion");
+											var subquiz = document.createElement("li");
+												var subquiz_header = document.createElement("div");
+												subquiz_header.setAttribute("class", "collapsible-header");
+												subquiz_header.innerHTML = examLink[i].quiz[j].name;
+											subquiz.appendChild(subquiz_header);
+												var subquiz_body = document.createElement("div");
+												subquiz_body.setAttribute("class", "collapsible-body");
+												for(var k = 0; k < examLink[i].quiz[j].file.length; k++){
+													var link = document.createElement("p");
+													link.innerHTML = examLink[i].quiz[j].file[k];
+													var string = examLink[i].name + "_quiz_" + examLink[i].quiz[j].name;
+													string += "_" + examLink[i].quiz[j].file[k];
+														// string ex: biology_quiz_第一次小考_103-1
+													link.setAttribute("onclick", "add_in_right_bar(\"" + string + "\")");
+
+													subquiz_body.appendChild(link);
+												}
+											subquiz.appendChild(subquiz_body);
+										subblock.appendChild(subquiz);
+
+										quiz_body.appendChild(subblock);
+									}*/
+
+							/*
+								quiz.appendChild(quiz_body);
+							block.appendChild(quiz);
+								var exam = document.createElement("li");
+									var exam_header = document.createElement("div");
+									exam_header.setAttribute("class", "collapsible-header");
+									exam_header.innerHTML = "exam" + index;
+								exam.appendChild(exam_header);
+									var exam_body = document.createElement("div");
+									exam_body.setAttribute("class", "collapsible-body");
+									for(var j = 0; j < examLink[i].exam.length; j++){
+										/*
+										var subblock = document.createElement("ul");
+										subblock.setAttribute("class", "collapsible");
+										subblock.setAttribute("data-collapsible", "accordion");
+											var subexam = document.createElement("li");
+												var subexam_header = document.createElement("div");
+												subexam_header.setAttribute("class", "collapsible-header");
+												subexam_header.innerHTML = examLink[i].exam[j].name;
+											subexam.appendChild(subexam_header);
+												var subexam_body = document.createElement("div");
+												subexam_body.setAttribute("class", "collapsible-body");
+												for(var k = 0; k < examLink[i].exam[j].file.length; k++){
+													var link = document.createElement("p");
+													link.innerHTML = examLink[i].exam[j].file[k];
+													var string = examLink[i].name + "_exam_" + examLink[i].exam[j].name;
+													string += "_" + examLink[i].exam[j].file[k];
+														// string ex: biology_exam_第一次期中_103-1
+													link.setAttribute("onclick", "add_in_right_bar(\"" + string + "\")");
+
+													subexam_body.appendChild(link);
+												}
+											subexam.appendChild(subexam_body);
+										subblock.appendChild(subexam);
+
+										exam_body.appendChild(subblock);
+										*/
+									
+						/*
+								exam.appendChild(exam_body);
+							block.appendChild(exam);
+						card_reveal.appendChild(block);
+							break;
+						*/
+						
+					
+					
 			card.appendChild(card_reveal);
 
     main_container.appendChild(card);
