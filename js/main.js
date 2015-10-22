@@ -172,24 +172,18 @@ function add(obj){
 											subexam.appendChild(subexam_body);
 										subblock.appendChild(subexam);
 
-										exam_body.appendChild(subblock);
+									exam_body.appendChild(subblock);
 									}
-										
-									
-						
 								exam.appendChild(exam_body);
 							block.appendChild(exam);
 						card_reveal.appendChild(block);
 							break;
-						
-
 					}	
 				}
-					
 			card.appendChild(card_reveal);
-
     main_container.appendChild(card);
-    enableCols();
+    
+	enableCols();
   }
 }
 function add_in_right_bar(string){
@@ -202,6 +196,7 @@ function add_in_right_bar(string){
 			a.setAttribute("onclick", "remove_in_right_bar(\"" + string + "\")");
 		li.appendChild(a);
 	right_bar.appendChild(li);
+	document.getElementById("btn-submit").disabled = false;
 }
 function remove_in_right_bar(string){
 	document.getElementById("right_bar").removeChild(document.getElementById("li: " + string));
@@ -212,4 +207,21 @@ function enableCols(){
   		accordion : false 
 	});
 }
-        
+
+function submit(){
+	document.getElementById("btn-submit").disabled = true;
+	var strings = [];
+	var right_bar = document.getElementById("right_bar");
+	var elements = right_bar.children;
+	for(var i = 0; i < elements.length; ++i){
+		if(elements[i].nodeName === "LI"){
+			strings.push(elements[i].innerHTML);
+			right_bar.removeChild(elements[i]);
+			--i;
+		}
+	}
+	for(var i = 0; i < strings.length; ++i)
+		console.log(strings[i]);
+	// strings are all needed to be submitted
+}
+
