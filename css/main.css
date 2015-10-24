@@ -2,3 +2,8 @@
   position: relative;
   top:          17px;
 }
+
+.Flex {
+  padding: 10px;
+  flex: 1;
+}
