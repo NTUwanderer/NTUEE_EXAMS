@@ -46,7 +46,15 @@ socket.emit('initial', {id: "b00000000"}, function(data){
     }
   }
 });
-
+function remove(bool){ // 上學期:false
+	var main_container = document.getElementById("main_container");
+	for(var i = 0; i < subjects.length; ++i){
+		if(bool == subjects[i][4] && subjects[i][3]){
+			main_container.removeChild(document.getElementById("card: " + subjects[i][0]));
+			subjects[i][3] = false;
+		}
+	}
+}
 function add(obj){
   console.log("adding");
   console.log(obj);
@@ -56,7 +64,6 @@ function add(obj){
   if(subjects[index][3]){
     main_container.removeChild(document.getElementById("card: " +　obj.innerHTML));
     subjects[index][3] = false;
-
   }
   else{
     subjects[index][3] = true;
@@ -82,8 +89,16 @@ function add(obj){
           icon.setAttribute("style", "position: relative; top: 10px;")
           icon.innerHTML = "more_vert";
         card_title.appendChild(icon);
-      card_content.appendChild(card_title);
-    card.appendChild(card_content);
+			card_content.appendChild(card_title);
+			/*	
+				var icon_out = document.createElement("i");
+					icon_out.setAttribute("class", "material-icons right");
+					icon_out.setAttribute("style", "position: relative; top:10px;");
+					icon_out.innerHTML = "close";
+					icon_out.onclick = add(obj);
+			card_content.appendChild(icon_out);
+			*/
+		card.appendChild(card_content);
     
     var card_reveal = document.createElement("div");
     card_reveal.setAttribute("class", "card-reveal");
