@@ -65,190 +65,187 @@ function add(obj){
     card.setAttribute("id", "card: " + obj.innerHTML);
     card.setAttribute("class", "card");
     card.setAttribute("style", "position: relative; display: inline-block; margin:2.5%; width:35%; height:30%");
-    var card_image = document.createElement("div");
-    card_image.setAttribute("class", "card-image waves-effect waves-block waves-light");
-    var img = document.createElement("img");
-    img.setAttribute("class", "size-Subject");
-    img.setAttribute("src", subjects[index][2]);
-    card_image.appendChild(img);
+      var card_image = document.createElement("div");
+      card_image.setAttribute("class", "card-image waves-effect waves-block waves-light");
+        var img = document.createElement("img");
+        img.setAttribute("class", "size-Subject");
+        img.setAttribute("src", subjects[index][2]);
+      card_image.appendChild(img);
     card.appendChild(card_image);
-    var card_content = document.createElement("div");
-    card_content.setAttribute("class", "card-content");
-    var card_title = document.createElement("span");
-    card_title.setAttribute("class", "card-title activator grey-text text-darken-4");
-    card_title.innerHTML = obj.innerHTML; // need to be dynamic
-    var icon = document.createElement("i");
-    icon.setAttribute("class", "material-icons right");
-    icon.setAttribute("style", "position: relative; top: 10px;")
-      icon.innerHTML = "more_vert";
-    card_title.appendChild(icon);
-    card_content.appendChild(card_title);
+      var card_content = document.createElement("div");
+      card_content.setAttribute("class", "card-content");
+        var card_title = document.createElement("span");
+        card_title.setAttribute("class", "card-title activator grey-text text-darken-4");
+        card_title.innerHTML = obj.innerHTML; // need to be dynamic
+          var icon = document.createElement("i");
+          icon.setAttribute("class", "material-icons right");
+          icon.setAttribute("style", "position: relative; top: 10px;")
+          icon.innerHTML = "more_vert";
+        card_title.appendChild(icon);
+      card_content.appendChild(card_title);
     card.appendChild(card_content);
+    
     var card_reveal = document.createElement("div");
     card_reveal.setAttribute("class", "card-reveal");
-    var card_title2 = document.createElement("span");
-    card_title2.setAttribute("class", "card-title grey-text text-darken-4");
-    card_title2.innerHTML = obj.innerHTML; // need to be dynamic
-    var icon2 = document.createElement("i");
-    icon2.setAttribute("class", "material-icons right");
-    icon2.innerHTML = "close";
-    card_title2.appendChild(icon2);
+      var card_title2 = document.createElement("span");
+      card_title2.setAttribute("class", "card-title grey-text text-darken-4");
+      card_title2.innerHTML = obj.innerHTML; // need to be dynamic
+        var icon2 = document.createElement("i");
+        icon2.setAttribute("class", "material-icons right");
+        icon2.innerHTML = "close";
+      card_title2.appendChild(icon2);
     card_reveal.appendChild(card_title2);
 
-    for(var i = 0; i < examLink.length; i++){
-      if(examLink[i].name == subjects[index][1]){
-        card.setAttribute("data-baseIndex", i);
-
-        var block = document.createElement("div")
-          block.style = "position: relative; display: flex; flex-direction: column;";
-        block.style.width = "100%";
-        block.style.height = "100%";
-        block.style.padding = "0px 0px 30px 0px";
-        var alltok = [];
-        var quiz = document.createElement("a");
-        quiz.setAttribute("class", "0" + subjects[index][1] + " Flex");
-        quiz.setAttribute("onclick", "getQuiz(\"" + subjects[index][1] + "\")");
-        quiz.innerHTML = "quiz";
-        alltok.push(quiz);
-        var exam = document.createElement("a");
-        exam.setAttribute("class", "0" + subjects[index][1] + " Flex");
-        exam.setAttribute("onclick", "getExam(\"" + subjects[index][1] + "\")");
-        exam.innerHTML = "exam";
-        alltok.push(exam);
-        var icon = document.createElement("i");
-        icon.setAttribute("class", "material-icons ");
-        icon.setAttribute("id", "icon" + subjects[index][1]);
-        icon.style.position = "absolute";
-        icon.style.top = "30px";
-        icon.style.left = "30px";
-        icon.style.display = "none";
-        icon.innerHTML = "keyboard_return";
-        alltok.push(icon);
-        for(var j = 0; j < examLink[i].quiz.length; j++){
-          var subquiz = document.createElement("a");
-          subquiz.setAttribute("class", "1q" + subjects[index][1] + " Flex");
-          subquiz.setAttribute("onclick", "getQfile(\""+ subjects[index][1] + "\")");
-          subquiz.setAttribute("style", "display: none");
-          subquiz.innerHTML = examLink[i].quiz[j].name;
-          alltok.push(subquiz);
-          for(var k = 0; k < examLink[i].quiz[j].file.length; k++){
-            var link = document.createElement("a");
-            link.setAttribute("class", "2q" + subjects[index][1] + " Flex");
-            link.innerHTML = examLink[i].quiz[j].file[k];
-            var string = examLink[i].name + "@quiz_" + j.toString();
-            string += "_" + examLink[i].quiz[j].file[k];
-            // string ex: biology_quiz_第一次小考_103-1
-            link.setAttribute("onclick", "add_in_right_bar(\"" + string + "\")");
-            link.style.display = "none";
-         
-            alltok.push(link);
+        for(var i = 0; i < examLink.length; i++){
+          if(examLink[i].name == subjects[index][1]){
+            card.setAttribute("data-baseIndex", i);
+    
+            var block = document.createElement("div")
+            block.style = "position: relative; display: flex; flex-direction: column;";
+            block.style.width = "100%";
+            block.style.height = "80%";
+            block.style.padding = "0px";
+            var alltok = [];
+              var quiz = document.createElement("a");
+              quiz.setAttribute("style", "display: inline-block; margin-left: 15px; font-size: 20px");
+              quiz.setAttribute("onclick", "getQuiz(\"" + subjects[index][1] + "\")");
+              quiz.innerHTML = "quiz";
+            alltok.push(wrapper(quiz, "0" + subjects[index][1], true));
+              var exam = document.createElement("a");
+              exam.setAttribute("style", "display: inline-block; margin-left: 15px; font-size: 20px");
+              exam.setAttribute("onclick", "getExam(\"" + subjects[index][1] + "\")");
+              exam.innerHTML = "exam";
+            alltok.push(wrapper(exam, "0" + subjects[index][1], true));
+              var icon = document.createElement("i");
+              icon.setAttribute("class", "material-icons ");
+              icon.setAttribute("id", "icon" + subjects[index][1]);
+              icon.style.position = "absolute";
+              icon.style.top = "calc(100% - 24px)";
+              icon.style.left = "calc(100% - 27px)";
+              icon.style.display = "none";
+              icon.innerHTML = "keyboard_return";
+            alltok.push(icon);
+              for(var j = 0; j < examLink[i].quiz.length; j++){
+                var subquiz = document.createElement("a");
+                subquiz.setAttribute("onclick", "getQfile(\""+ subjects[index][1] + "\")");
+                subquiz.setAttribute("style", "margin-left: 15px; font-size: 18px");
+                subquiz.innerHTML = examLink[i].quiz[j].name;
+                alltok.push(wrapper(subquiz, "1q" + subjects[index][1], false));
+                for(var k = 0; k < examLink[i].quiz[j].file.length; k++){
+                  var link = document.createElement("a");
+                  link.setAttribute("style", "padding: 3px");
+                  link.innerHTML = examLink[i].quiz[j].file[k];
+                  var string = examLink[i].name + "@quiz_" + j.toString();
+                  string += "_" + examLink[i].quiz[j].file[k];
+                  // string ex: biology_quiz_第一次小考_103-1
+                  link.setAttribute("onclick", "add_in_right_bar(\"" + string + "\")");
+               
+                  alltok.push(wrapper(link, "2q" + subjects[index][1], false));
+                }
+              }
+              for(var j = 0; j < examLink[i].exam.length; j++){
+                var subexam = document.createElement("a");
+                subexam.setAttribute("onclick", "getEfile(\"" + subjects[index][1] + "\")");
+                subexam.setAttribute("style", " margin-left: 15px; font-size: 18px");
+                subexam.innerHTML = examLink[i].exam[j].name;
+                alltok.push(wrapper(subexam, "1e" + subjects[index][1], false));
+                for(var k = 0; k < examLink[i].exam[j].file.length; k++){
+                  var link = document.createElement("a");
+                  link.innerHTML = examLink[i].exam[j].file[k];
+                  link.setAttribute("style", "padding: 3px");
+                  var string = examLink[i].name + "@quiz_" + j.toString();
+                  string += "_" + examLink[i].exam[j].file[k];
+                  // string ex: biology_quiz_第一次小考_103-1
+                  link.setAttribute("onclick", "add_in_right_bar(\"" + string + "\")");
+    
+                  alltok.push(wrapper(link, "2e" + subjects[index][1], false));
+                }
+              }
+              for(var i = 0; i < alltok.length; i++){
+                block.appendChild(alltok[i]);
+              }                                
+              /*
+                 var block = document.createElement("ul"); // whole block
+                 block.setAttribute("class", "collapsible");
+                 block.setAttribute("data-collapsible", "accordion");
+                 var quiz = document.createElement("li");
+                 var quiz_header = document.createElement("div");
+                 quiz_header.setAttribute("class", "collapsible-header");
+                 quiz_header.innerHTML = "quiz" + index;
+                 quiz.appendChild(quiz_header);
+                 var quiz_body = document.createElement("div");
+                 quiz_body.setAttribute("class", "collapsible-body");
+    
+                 for(var j = 0; j < examLink[i].quiz.length; j++){
+                 var subblock = document.createElement("ul");
+                 subblock.setAttribute("class", "collapsible");
+                 subblock.setAttribute("data-collapsible", "accordion");
+                 var subquiz = document.createElement("li");
+                 var subquiz_header = document.createElement("div");
+                 subquiz_header.setAttribute("class", "collapsible-header");
+                 subquiz_header.innerHTML = examLink[i].quiz[j].name;
+                 subquiz.appendChild(subquiz_header);
+                 var subquiz_body = document.createElement("div");
+                 subquiz_body.setAttribute("class", "collapsible-body");
+                 for(var k = 0; k < examLink[i].quiz[j].file.length; k++){
+                 var link = document.createElement("p");
+                 link.innerHTML = examLink[i].quiz[j].file[k];
+                 var string = examLink[i].name + "_quiz_" + examLink[i].quiz[j].name;
+                 string += "_" + examLink[i].quiz[j].file[k];
+              // string ex: biology_quiz_第一次小考_103-1
+              link.setAttribute("onclick", "add_in_right_bar(\"" + string + "\")");
+    
+              subquiz_body.appendChild(link);
+              }
+              subquiz.appendChild(subquiz_body);
+              subblock.appendChild(subquiz);
+    
+              quiz_body.appendChild(subblock);
+              }
+    
+              quiz.appendChild(quiz_body);
+              block.appendChild(quiz);
+              var exam = document.createElement("li");
+              var exam_header = document.createElement("div");
+              exam_header.setAttribute("class", "collapsible-header");
+              exam_header.innerHTML = "exam" + index;
+              exam.appendChild(exam_header);
+              var exam_body = document.createElement("div");
+              exam_body.setAttribute("class", "collapsible-body");
+              for(var j = 0; j < examLink[i].exam.length; j++){
+    
+              var subblock = document.createElement("ul");
+              subblock.setAttribute("class", "collapsible");
+              subblock.setAttribute("data-collapsible", "accordion");
+              var subexam = document.createElement("li");
+              var subexam_header = document.createElement("div");
+              subexam_header.setAttribute("class", "collapsible-header");
+              subexam_header.innerHTML = examLink[i].exam[j].name;
+              subexam.appendChild(subexam_header);
+              var subexam_body = document.createElement("div");
+              subexam_body.setAttribute("class", "collapsible-body");
+              for(var k = 0; k < examLink[i].exam[j].file.length; k++){
+              var link = document.createElement("p");
+              link.innerHTML = examLink[i].exam[j].file[k];
+              var string = examLink[i].name + "_exam_" + examLink[i].exam[j].name;
+              string += "_" + examLink[i].exam[j].file[k];
+                  // string ex: biology_exam_第一次期中_103-1
+                  link.setAttribute("onclick", "add_in_right_bar(\"" + string + "\")");
+    
+                  subexam_body.appendChild(link);
+                  }
+                  subexam.appendChild(subexam_body);
+              subblock.appendChild(subexam);
+    
+              exam_body.appendChild(subblock);
           }
+          exam.appendChild(exam_body);
+          block.appendChild(exam);
+          */
+            card_reveal.appendChild(block);
+          break;
+          }	
         }
-        for(var j = 0; j < examLink[i].exam.length; j++){
-          var subexam = document.createElement("a");
-          subexam.setAttribute("class", "1e" + subjects[index][1]);
-          subexam.setAttribute("onclick", "getEfile(\"" + subjects[index][1] + "\")");
-          subexam.setAttribute("style", "display: none");
-          subexam.innerHTML = examLink[i].exam[j].name;
-          alltok.push(subexam);
-          for(var k = 0; k < examLink[i].exam[j].file.length; k++){
-            var link = document.createElement("a");
-            link.innerHTML = examLink[i].exam[j].file[k];
-            link.setAttribute("class", "2e" + subjects[index][1] + " Flex");
-            var string = examLink[i].name + "@quiz_" + j.toString();
-            string += "_" + examLink[i].exam[j].file[k];
-            // string ex: biology_quiz_第一次小考_103-1
-            link.setAttribute("onclick", "add_in_right_bar(\"" + string + "\")");
-            link.style.display = "none";
-
-            alltok.push(link);
-          }
-        }
-        for(var i = 0; i < alltok.length; i++){
-          block.appendChild(alltok[i]);
-        }                                
-        /*
-           var block = document.createElement("ul"); // whole block
-           block.setAttribute("class", "collapsible");
-           block.setAttribute("data-collapsible", "accordion");
-           var quiz = document.createElement("li");
-           var quiz_header = document.createElement("div");
-           quiz_header.setAttribute("class", "collapsible-header");
-           quiz_header.innerHTML = "quiz" + index;
-           quiz.appendChild(quiz_header);
-           var quiz_body = document.createElement("div");
-           quiz_body.setAttribute("class", "collapsible-body");
-
-           for(var j = 0; j < examLink[i].quiz.length; j++){
-           var subblock = document.createElement("ul");
-           subblock.setAttribute("class", "collapsible");
-           subblock.setAttribute("data-collapsible", "accordion");
-           var subquiz = document.createElement("li");
-           var subquiz_header = document.createElement("div");
-           subquiz_header.setAttribute("class", "collapsible-header");
-           subquiz_header.innerHTML = examLink[i].quiz[j].name;
-           subquiz.appendChild(subquiz_header);
-           var subquiz_body = document.createElement("div");
-           subquiz_body.setAttribute("class", "collapsible-body");
-           for(var k = 0; k < examLink[i].quiz[j].file.length; k++){
-           var link = document.createElement("p");
-           link.innerHTML = examLink[i].quiz[j].file[k];
-           var string = examLink[i].name + "_quiz_" + examLink[i].quiz[j].name;
-           string += "_" + examLink[i].quiz[j].file[k];
-        // string ex: biology_quiz_第一次小考_103-1
-        link.setAttribute("onclick", "add_in_right_bar(\"" + string + "\")");
-
-        subquiz_body.appendChild(link);
-        }
-        subquiz.appendChild(subquiz_body);
-        subblock.appendChild(subquiz);
-
-        quiz_body.appendChild(subblock);
-        }
-
-        quiz.appendChild(quiz_body);
-        block.appendChild(quiz);
-        var exam = document.createElement("li");
-        var exam_header = document.createElement("div");
-        exam_header.setAttribute("class", "collapsible-header");
-        exam_header.innerHTML = "exam" + index;
-        exam.appendChild(exam_header);
-        var exam_body = document.createElement("div");
-        exam_body.setAttribute("class", "collapsible-body");
-        for(var j = 0; j < examLink[i].exam.length; j++){
-
-        var subblock = document.createElement("ul");
-        subblock.setAttribute("class", "collapsible");
-        subblock.setAttribute("data-collapsible", "accordion");
-        var subexam = document.createElement("li");
-        var subexam_header = document.createElement("div");
-        subexam_header.setAttribute("class", "collapsible-header");
-        subexam_header.innerHTML = examLink[i].exam[j].name;
-        subexam.appendChild(subexam_header);
-        var subexam_body = document.createElement("div");
-        subexam_body.setAttribute("class", "collapsible-body");
-        for(var k = 0; k < examLink[i].exam[j].file.length; k++){
-        var link = document.createElement("p");
-        link.innerHTML = examLink[i].exam[j].file[k];
-        var string = examLink[i].name + "_exam_" + examLink[i].exam[j].name;
-        string += "_" + examLink[i].exam[j].file[k];
-            // string ex: biology_exam_第一次期中_103-1
-            link.setAttribute("onclick", "add_in_right_bar(\"" + string + "\")");
-
-            subexam_body.appendChild(link);
-            }
-            subexam.appendChild(subexam_body);
-        subblock.appendChild(subexam);
-
-        exam_body.appendChild(subblock);
-      }
-      exam.appendChild(exam_body);
-      block.appendChild(exam);
-      */
-        card_reveal.appendChild(block);
-      break;
-      }	
-    }
     card.appendChild(card_reveal);
     main_container.appendChild(card);
 
@@ -321,7 +318,7 @@ function Back(str){
   }
   var appe = document.getElementsByClassName("0" + str);
   for(var i = 0; i < appe.length; i++){
-    appe[i].style.display = "inline-block";
+    appe[i].style.display = "flex";
   }
   var button = document.getElementById("icon" + str);
   button.style.display = "none";
@@ -337,7 +334,7 @@ function getQuiz(str){
   }
   var appe = document.getElementsByClassName("1q" + str);
   for(var i = 0; i < appe.length; i++){
-    appe[i].style.display = "inline-block";
+    appe[i].style.display = "flex";
   }
   var button = document.getElementById("icon" + str);
   button.style.display = "inline-block";
@@ -354,7 +351,7 @@ function getExam(str){
   }
   var appe = document.getElementsByClassName("1e" + str);
   for(var i = 0; i < appe.length; i++){
-    appe[i].style.display = "inline-block";
+    appe[i].style.display = "flex";
   }
   var button = document.getElementById("icon" + str);
   button.style.display = "inline-block";
@@ -367,7 +364,7 @@ function getQfile(str){
   }
   var appe = document.getElementsByClassName("2q" + str);
   for(var i = 0; i < appe.length; i++){
-    appe[i].style.display = "inline-block";
+    appe[i].style.display = "flex";
   }
   var button = document.getElementById("icon" + str);
   button.style.display = "inline-block";
@@ -380,9 +377,21 @@ function getEfile(str){
   }
   var appe = document.getElementsByClassName("2e" + str);
   for(var i = 0; i < appe.length; i++){
-    appe[i].style.display = "inline-block";
+    appe[i].style.display = "flex";
   }
   var button = document.getElementById("icon" + str);
   button.style.display = "inline-block";
   button.setAttribute("onclick", "getExam(\"" + str + "\")");
 }
+
+function wrapper(obj, classN, display){
+  var wrap = document.createElement("div");
+  wrap.setAttribute("class", classN + " Flex");
+  if(display)
+    wrap.setAttribute("style", "display: flex; align-items: center");
+  else
+    wrap.setAttribute("style", "display: none; align-items: center");
+  wrap.appendChild(obj);
+  return wrap;
+}
+// vim: set ts=2 sw=2 sts=2 tw=0 et :
