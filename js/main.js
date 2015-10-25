@@ -46,22 +46,14 @@ socket.emit('initial', {id: "b00000000"}, function(data){
     }
   }
 });
-function remove(s, message){
-	if(message == "semester"){ // 上學期:false
-		var main_container = document.getElementById("main_container");
-		for(var i = 0; i < subjects.length; ++i){
-			if(s == subjects[i][4] && subjects[i][3]){
-				var temp = document.getElementById("card: " + subjects[i][0]);
-				if(temp != null)	main_container.removeChild(temp);
-				subjects[i][3] = false;
-			}
+function remove(bool){ // 上學期:false
+	var main_container = document.getElementById("main_container");
+	for(var i = 0; i < subjects.length; ++i){
+		if(bool == subjects[i][4] && subjects[i][3]){
+			var temp = document.getElementById("card: " + subjects[i][0]);
+			if(temp != null)	main_container.removeChild(temp);
+			subjects[i][3] = false;
 		}
-	}
-	else if(message = "single"){ // s = index
-		var main_container = document.getElementById("main_container");
-		var temp = document.getElementById("card: " + subjects[s][0]);
-		if(temp != null)	main_container.removeChild(temp);
-		subjects[s][3] = false;
 	}
 }
 function add(obj){

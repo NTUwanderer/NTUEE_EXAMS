@@ -27,14 +27,14 @@ function semester(){
   var temp = document.getElementById("semester");
   if(temp.innerHTML == "上學期") {
     temp.innerHTML = "下學期";
-	remove(false, "semester");
+	remove(false);
     sem = true;
 		
 		
   }
   else if(temp.innerHTML== "下學期") {
     temp.innerHTML = "上學期";
-    remove(true, "semester");
+    remove(true);
 	sem = false;
   }
   reset();
