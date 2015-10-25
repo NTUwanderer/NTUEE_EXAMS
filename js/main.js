@@ -153,7 +153,7 @@ function add(obj){
                   var link = document.createElement("a");
                   link.innerHTML = examLink[i].exam[j].file[k];
                   link.setAttribute("style", "padding: 3px");
-                  var string = examLink[i].name + "@quiz_" + j.toString();
+                  var string = examLink[i].name + "@exam_" + j.toString();
                   string += "_" + examLink[i].exam[j].file[k];
                   // string ex: biology_quiz_第一次小考_103-1
                   link.setAttribute("onclick", "add_in_right_bar(\"" + string + "\")");
@@ -254,15 +254,19 @@ function add(obj){
 }
 function add_in_right_bar(string){
   // string ex: biology_quiz_第一次小考_103-1
-  var right_bar = document.getElementById("right_bar");
-  var li = document.createElement("li");
-  li.setAttribute("id", "li: " + string);
-  var a = document.createElement("a");
-  a.innerHTML = string;
-  a.setAttribute("onclick", "remove_in_right_bar(\"" + string + "\")");
-  li.appendChild(a);
-  right_bar.appendChild(li);
-  document.getElementById("btn-submit").disabled = false;
+	var element = document.getElementById("li: " + string);
+	if(element == null){
+
+  	var right_bar = document.getElementById("right_bar");
+  	var li = document.createElement("li");
+  	li.setAttribute("id", "li: " + string);
+  	var a = document.createElement("a");
+  	a.innerHTML = string;
+  	a.setAttribute("onclick", "remove_in_right_bar(\"" + string + "\")");
+  	li.appendChild(a);
+  	right_bar.appendChild(li);
+  	document.getElementById("btn-submit").disabled = false;
+	}
 }
 function remove_in_right_bar(string){
   document.getElementById("right_bar").removeChild(document.getElementById("li: " + string));
