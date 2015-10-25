@@ -59,7 +59,7 @@ module.exports = {
       socket.on('disconnect',function(){
         console.log("Socket id : ", socket.id, " is disconnected.");
       });
-    }
+    })
   };
-
+}
   // vim: set ts=2 sw=2 sts=2 tw=0 et :

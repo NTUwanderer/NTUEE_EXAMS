@@ -46,13 +46,22 @@ socket.emit('initial', {id: "b00000000"}, function(data){
     }
   }
 });
-function remove(bool){ // 上學期:false
-	var main_container = document.getElementById("main_container");
-	for(var i = 0; i < subjects.length; ++i){
-		if(bool == subjects[i][4] && subjects[i][3]){
-			main_container.removeChild(document.getElementById("card: " + subjects[i][0]));
-			subjects[i][3] = false;
+function remove(s, message){
+	if(message == "semester"){ // 上學期:false
+		var main_container = document.getElementById("main_container");
+		for(var i = 0; i < subjects.length; ++i){
+			if(s == subjects[i][4] && subjects[i][3]){
+				var temp = document.getElementById("card: " + subjects[i][0]);
+				if(temp != null)	main_container.removeChild(temp);
+				subjects[i][3] = false;
+			}
 		}
+	}
+	else if(message = "single"){ // s = index
+		var main_container = document.getElementById("main_container");
+		var temp = document.getElementById("card: " + subjects[s][0]);
+		if(temp != null)	main_container.removeChild(temp);
+		subjects[s][3] = false;
 	}
 }
 function add(obj){
@@ -62,7 +71,9 @@ function add(obj){
   var right_bar = document.getElementById("right_bar");
   var index = nameMap.get(obj.innerHTML);
   if(subjects[index][3]){
-    main_container.removeChild(document.getElementById("card: " +　obj.innerHTML));
+  	var temp = document.getElementById("card: " +　obj.innerHTML);
+  	if(temp != null)
+    	main_container.removeChild(temp);
     subjects[index][3] = false;
   }
   else{
@@ -89,15 +100,19 @@ function add(obj){
           icon.setAttribute("style", "position: relative; top: 10px;")
           icon.innerHTML = "more_vert";
         card_title.appendChild(icon);
-			card_content.appendChild(card_title);
-			/*	
+	card_content.appendChild(card_title);
+				
 				var icon_out = document.createElement("i");
-					icon_out.setAttribute("class", "material-icons right");
-					icon_out.setAttribute("style", "position: relative; top:10px;");
-					icon_out.innerHTML = "close";
-					icon_out.onclick = add(obj);
+				icon_out.setAttribute("class", "material-icons right");
+				icon_out.setAttribute("style", "position: relative; top:10px;");
+				icon_out.innerHTML = "close";
+				icon_out.onclick = function(){
+					var temp = document.getElementById("card: " + subjects[index][0]);
+					if(temp != null)	main_container.removeChild(temp);
+					subjects[index][3] = false;
+				}
 			card_content.appendChild(icon_out);
-			*/
+			
 		card.appendChild(card_content);
     
     var card_reveal = document.createElement("div");
