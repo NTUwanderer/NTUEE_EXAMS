@@ -19,8 +19,8 @@ var subjects = [
   ["電路學", "circuit", "images/circuit.jpg", false, false],
   ["工程數學-微分方程", "diff", "images/diff.jpg", false, false],
   ["交換電路與邏輯設計", "logic", "images/logic.jpg", false, false],
-  ["電子學二", "electron2", "images/electron2.jpg", false, false],
 
+  ["電子學二", "electron2", "images/electron2.jpg", false, true],
   ["電磁學一", "electrom1", "images/electrom1.jpg", false, true],
   ["信號與系統", "signal", "images/signal.jpg", false, true],
   ["機率與統計", "probability", "images/probability.jpg", false, true],
@@ -46,6 +46,11 @@ socket.emit('initial', {id: "b00000000"}, function(data){
     }
   }
 });
+
+
+
+
+
 function remove(bool){ // 上學期:false
 	var main_container = document.getElementById("main_container");
 	for(var i = 0; i < subjects.length; ++i){
@@ -56,6 +61,8 @@ function remove(bool){ // 上學期:false
 		}
 	}
 }
+
+
 function add(obj){
   console.log("adding");
   console.log(obj);

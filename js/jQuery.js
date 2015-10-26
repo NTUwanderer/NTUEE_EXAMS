@@ -29,8 +29,6 @@ function semester(){
     temp.innerHTML = "下學期";
 	remove(false);
     sem = true;
-		
-		
   }
   else if(temp.innerHTML== "下學期") {
     temp.innerHTML = "上學期";
