@@ -81,7 +81,7 @@ function add(obj){
     var card = document.createElement("div");
     card.setAttribute("id", "card: " + obj.innerHTML);
     card.setAttribute("class", "card");
-    card.setAttribute("style", "position: relative; display: inline-block; margin:2.5%; width:35%; height:30%");
+    card.setAttribute("style", "position: relative; display: inline-block; margin:2.5% 0 0 2.5%; width:33%; height:30%");
       var card_image = document.createElement("div");
       card_image.setAttribute("class", "card-image waves-effect waves-block waves-light");
         var img = document.createElement("img");
@@ -288,18 +288,20 @@ function add_in_right_bar(string){
   	var right_bar = document.getElementById("right_bar");
   		var li = document.createElement("li");
   		li.setAttribute("id", "li: " + string);
+      li.setAttribute("style", "height: 30px;");
+  			var icon_out = document.createElement("i");
+			  icon_out.setAttribute("class", "material-icons left red-text waves-effect waves-light");
+			  icon_out.setAttribute("style", "position: relative; display: inline-block; float: left; padding: 0px; margin: 0px;");
+			  icon_out.innerHTML = "close";
+			    icon_out.onclick=function(){
+				    right_bar.removeChild(li);
+			    }
+		  li.appendChild(icon_out);
   			var a = document.createElement("a");
-  			a.setAttribute("class", "left");
+  			//a.setAttribute("class", "left");
+        a.setAttribute("style", "line-height: 26px;");
   			a.innerHTML = string;
   		li.appendChild(a);
-  			var icon_out = document.createElement("i");
-			icon_out.setAttribute("class", "material-icons right red-text waves-effect waves-light");
-			icon_out.setAttribute("style", "position: relative;");
-			icon_out.innerHTML = "close";
-			icon_out.onclick=function(){
-				right_bar.removeChild(li);
-			}
-		li.appendChild(icon_out);
   	right_bar.appendChild(li);
   	document.getElementById("btn-submit").disabled = false;
 	}
