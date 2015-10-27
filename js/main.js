@@ -129,11 +129,8 @@ function add(obj){
           if(examLink[i].name == subjects[index][1]){
             card.setAttribute("data-baseIndex", i);
     
-            var block = document.createElement("div")
-            block.style = "position: relative; display: flex; flex-direction: column;";
-            block.style.width = "100%";
-            block.style.height = "80%";
-            block.style.padding = "0px";
+            var block = document.createElement("div");
+            block.setAttribute("class", "card-block");
             var alltok = [];
               var quiz = document.createElement("a");
               quiz.setAttribute("style", "display: inline-block; margin-left: 15px; font-size: 20px");
@@ -362,6 +359,7 @@ function Back(str){
   var appe = document.getElementsByClassName("0" + str);
   for(var i = 0; i < appe.length; i++){
     appe[i].style.display = "flex";
+    appe[i].style.display = "-webkit-flex";
   }
   var button = document.getElementById("icon" + str);
   button.style.display = "none";
@@ -378,6 +376,7 @@ function getQuiz(str){
   var appe = document.getElementsByClassName("1q" + str);
   for(var i = 0; i < appe.length; i++){
     appe[i].style.display = "flex";
+    appe[i].style.display = "-webkit-flex";
   }
   var button = document.getElementById("icon" + str);
   button.style.display = "inline-block";
@@ -395,6 +394,7 @@ function getExam(str){
   var appe = document.getElementsByClassName("1e" + str);
   for(var i = 0; i < appe.length; i++){
     appe[i].style.display = "flex";
+    appe[i].style.display = "-webkit-flex";
   }
   var button = document.getElementById("icon" + str);
   button.style.display = "inline-block";
@@ -408,6 +408,7 @@ function getQfile(str){
   var appe = document.getElementsByClassName("2q" + str);
   for(var i = 0; i < appe.length; i++){
     appe[i].style.display = "flex";
+    appe[i].style.display = "-webkit-flex";
   }
   var button = document.getElementById("icon" + str);
   button.style.display = "inline-block";
@@ -421,6 +422,7 @@ function getEfile(str){
   var appe = document.getElementsByClassName("2e" + str);
   for(var i = 0; i < appe.length; i++){
     appe[i].style.display = "flex";
+    appe[i].style.display = "-webkit-flex";
   }
   var button = document.getElementById("icon" + str);
   button.style.display = "inline-block";
@@ -430,10 +432,12 @@ function getEfile(str){
 function wrapper(obj, classN, display){
   var wrap = document.createElement("div");
   wrap.setAttribute("class", classN + " Flex");
-  if(display)
-    wrap.setAttribute("style", "display: flex; align-items: center");
-  else
+  if(display){
+    wrap.setAttribute("style", "display: flex -webkit-flex; align-items: center");
+  }
+  else{
     wrap.setAttribute("style", "display: none; align-items: center");
+  }
   wrap.appendChild(obj);
   return wrap;
 }
