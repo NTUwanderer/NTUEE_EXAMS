@@ -282,17 +282,27 @@ function add(obj){
   }
 }
 function add_in_right_bar(string){
+
+	
   // string ex: biology_quiz_第一次小考_103-1
 	var element = document.getElementById("li: " + string);
 	if(element == null){
 
   	var right_bar = document.getElementById("right_bar");
-  	var li = document.createElement("li");
-  	li.setAttribute("id", "li: " + string);
-  	var a = document.createElement("a");
-  	a.innerHTML = string;
-  	a.setAttribute("onclick", "remove_in_right_bar(\"" + string + "\")");
-  	li.appendChild(a);
+  		var li = document.createElement("li");
+  		li.setAttribute("id", "li: " + string);
+  			var a = document.createElement("a");
+  			a.setAttribute("class", "left");
+  			a.innerHTML = string;
+  		li.appendChild(a);
+  			var icon_out = document.createElement("i");
+			icon_out.setAttribute("class", "material-icons right red-text waves-effect waves-light");
+			icon_out.setAttribute("style", "position: relative;");
+			icon_out.innerHTML = "close";
+			icon_out.onclick=function(){
+				right_bar.removeChild(li);
+			}
+		li.appendChild(icon_out);
   	right_bar.appendChild(li);
   	document.getElementById("btn-submit").disabled = false;
 	}
