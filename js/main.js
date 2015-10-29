@@ -324,7 +324,7 @@ function submit(){
   console.log("submit");
   for(var i = 0; i < elements.length; ++i){
     if(elements[i].nodeName === "LI"){
-      strings.push(elements[i].children[0].innerHTML);
+      strings.push(elements[i].children[1].innerHTML);
       right_bar.removeChild(elements[i]);
       --i;
     }
