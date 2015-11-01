@@ -20,6 +20,7 @@ function reset(){
         $(".second").show();
         $(".first").hide();
     }
+	$(".none").show();
 }
 
 
