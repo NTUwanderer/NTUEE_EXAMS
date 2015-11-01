@@ -28,5 +28,8 @@ if((process.argv).length > 2){
       });
     });
   }
+	else if(cmd == '--construct'){
+		examDB.construct();
+	}
 }
 

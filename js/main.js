@@ -4,7 +4,7 @@ console.log("In main.js get examLink:", examLink);
 
 var subjects = [
   // 中文,       English,    image location,        on screen, 上學期: false
-  ["計算機程式", "cprograming", "images/cprograming.jpg", false, false],
+  ["計算機程式", "cprogram", "images/cprograming.jpg", false, false],
 
   ["計算機概論", "cscience", "images/cscience.jpg", false, true],
   ["工程數學-線性代數", "linear", "images/linear.jpg", false, true],
@@ -26,20 +26,19 @@ var subjects = [
   ["電磁學二", "electrom2", "images/electrom2.jpg", false, false],
   ["電子電路實驗三", "electrom2", "images/electrom2.jpg", false, false], //
 //Minor
-  ["演算法", "algorithm", "images/electrom2.jpg", false, false],
-  ["生醫工程概論", "bioEng", "images/electrom2.jpg", false, false],
-  ["計算機結構", "carch", "images/electrom2.jpg", false, false],
-  ["電腦網路導論", "cnetwork", "images/electrom2.jpg", false, false],
-  ["自動控制", "control", "images/electrom2.jpg", false, false],
-  ["資料結構", "DSnP", "images/electrom2.jpg", false, false],
-  ["LS", "LS", "images/electrom2.jpg", false, false],
-  ["微波系統導論", "microEng", "images/electrom2.jpg", false, false],
-  ["近代物理", "mPhy", "images/electrom2.jpg", false, false],
-  ["物件導向程式設計", "OOP", "images/electrom2.jpg", false, false],
-  ["通訊原理", "PC", "images/electrom2.jpg", false, false],
-  ["電力工程導論", "powerSys", "images/electrom2.jpg", false, false],
-  ["半導體製程", "SCTech", "images/electrom2.jpg", false, false],
-  ["積體電路設計", "VLSI", "images/electrom2.jpg", false, false]
+  ["演算法", "algorithm", "images/electrom2.jpg", false, 3],
+  ["生醫工程概論", "bioEng", "images/electrom2.jpg", false, 3],
+  ["計算機結構", "carch", "images/electrom2.jpg", false, 3],
+  ["電腦網路導論", "cnetwork", "images/electrom2.jpg", false, 3],
+  ["自動控制", "control", "images/electrom2.jpg", false, 3],
+  ["資料結構", "DSnP", "images/electrom2.jpg", false, 3],
+  ["微波系統導論", "microEng", "images/electrom2.jpg", false, 3],
+  ["近代物理", "mPhy", "images/electrom2.jpg", false, 3],
+  ["物件導向程式設計", "OOP", "images/electrom2.jpg", false, 3],
+  ["通訊原理", "PC", "images/electrom2.jpg", false, 3],
+  ["電力工程導論", "powerSys", "images/electrom2.jpg", false, 3],
+  ["半導體製程", "SCTech", "images/electrom2.jpg", false, 3],
+  ["積體電路設計", "VLSI", "images/electrom2.jpg", false, 3]
 
   ];
 
