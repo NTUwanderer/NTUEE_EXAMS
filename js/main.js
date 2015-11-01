@@ -4,14 +4,8 @@ console.log("In main.js get examLink:", examLink);
 
 var subjects = [
   // 中文,       English,    image location,        on screen, 上學期: false
-  ["微積分甲上", "calculus1", "images/calculus1.jpg", false, false],
-  ["普通物理學甲上", "physics1", "images/physics1.jpg", false, false],
   ["計算機程式", "cprograming", "images/cprograming.jpg", false, false],
-  ["生物科學通論", "biology", "images/biology.jpg", false, false],
-  ["普通化學丙", "chemistry", "images/chemistry.jpg", false, false],
 
-  ["微積分甲下", "calculus2", "images/calculus2.jpg", false, true],
-  ["普通物理學甲下", "physics2", "images/physics2.jpg", false, true],
   ["計算機概論", "cscience", "images/cscience.jpg", false, true],
   ["工程數學-線性代數", "linear", "images/linear.jpg", false, true],
 
@@ -19,6 +13,7 @@ var subjects = [
   ["電路學", "circuit", "images/circuit.jpg", false, false],
   ["工程數學-微分方程", "diff", "images/diff.jpg", false, false],
   ["交換電路與邏輯設計", "logic", "images/logic.jpg", false, false],
+  ["電子電路實驗一", "electrom2", "images/electrom2.jpg", false, false], //
 
   ["電子學二", "electron2", "images/electron2.jpg", false, true],
   ["電磁學一", "electrom1", "images/electrom1.jpg", false, true],
@@ -28,7 +23,24 @@ var subjects = [
   ["離散數學", "discrete", "images/discrete.jpg", false, true],
 
   ["電子學三", "electron3", "images/electron3.jpg", false, false],
-  ["電磁學二", "electrom2", "images/electrom2.jpg", false, false]
+  ["電磁學二", "electrom2", "images/electrom2.jpg", false, false],
+  ["電子電路實驗三", "electrom2", "images/electrom2.jpg", false, false], //
+//Minor
+  ["演算法", "algorithm", "images/electrom2.jpg", false, false],
+  ["生醫工程概論", "bioEng", "images/electrom2.jpg", false, false],
+  ["計算機結構", "carch", "images/electrom2.jpg", false, false],
+  ["電腦網路導論", "cnetwork", "images/electrom2.jpg", false, false],
+  ["自動控制", "control", "images/electrom2.jpg", false, false],
+  ["資料結構", "DSnP", "images/electrom2.jpg", false, false],
+  ["LS", "LS", "images/electrom2.jpg", false, false],
+  ["微波系統導論", "microEng", "images/electrom2.jpg", false, false],
+  ["近代物理", "mPhy", "images/electrom2.jpg", false, false],
+  ["物件導向程式設計", "OOP", "images/electrom2.jpg", false, false],
+  ["通訊原理", "PC", "images/electrom2.jpg", false, false],
+  ["電力工程導論", "powerSys", "images/electrom2.jpg", false, false],
+  ["半導體製程", "SCTech", "images/electrom2.jpg", false, false],
+  ["積體電路設計", "VLSI", "images/electrom2.jpg", false, false]
+
   ];
 
   for(var i = 0; i < subjects.length; i++){
