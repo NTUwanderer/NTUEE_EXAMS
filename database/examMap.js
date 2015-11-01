@@ -36,12 +36,12 @@ module.exports = {
     exam : ["期中考", "期末考"]
   },
   electrom1 : {
-    quiz : [],
+    quiz : ["第一次小考", "第二次小考"],
     exam : ["期中考", "期末考"]
   },
   
   signal : {
-    quiz : [],
+    quiz : ["第一次小考", "第二次小考"],
     exam : ["期中考", "期末考"]
   },
   probability : {
@@ -53,10 +53,6 @@ module.exports = {
     exam : ["期中考", "期末考"]
   },
   discrete : {
-    quiz : [],
-    exam : ["期中考", "期末考"]
-  },
-  electrom2 : {
     quiz : [],
     exam : ["期中考", "期末考"]
   },
@@ -79,7 +75,7 @@ module.exports = {
 // Minor
   algorithm : {
     quiz : [],
-    exam : ["第一次期中考", "第二次期中考", "第二次期中考"]
+    exam : ["第一次期中考", "第二次期中考"]
   },
   bioEng : {
     quiz : [],
