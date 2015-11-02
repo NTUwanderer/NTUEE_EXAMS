@@ -6,7 +6,8 @@ if((process.argv).length > 2){
   if(cmd == '--help'){
     console.log(
       "  --allexam        to see all exams in DB. \n" +
-      "  --build          to build examsLink to js/examLink.js."
+      "  --build          to build examsLink to js/examLink.js." +
+      "  --construct      to construct examDB"
     );
   }
   else if(cmd == '--allexam'){
@@ -28,8 +29,8 @@ if((process.argv).length > 2){
       });
     });
   }
-	else if(cmd == '--construct'){
-		examDB.construct();
-	}
+  else if(cmd == '--construct'){
+	examDB.construct();
+  }
 }
 

@@ -26,7 +26,7 @@ exam.post('save', function(user){
 var database = mongoose.model('ALL_EXAMS', exam);
 
 //database.remove({},function(err){console.log("remove");});;
-var Test = new database();
+/*var Test = new database();
 Test.name = "calculus1";
 Test.quiz.push({
   name: "第一次小考",
@@ -39,18 +39,18 @@ Test.exam.push({
 Test.save(function(Err){
   console.log(Err);
 });
-
+*/
 
 
 module.exports = {
   getExams : function(callback){
     database.find({}, 'name quiz exam', function(err, exams){
-      /*exams.forEach(function(i){
+      exams.forEach(function(i){
         console.log("find: ", i);
         console.log("name: ", i.name);
         console.log("quiz: ", i.quiz);
         console.log("exam: ", i.exam);
-        });*/
+      });
 
       callback && callback(exams);
     });
@@ -114,11 +114,10 @@ module.exports = {
 
 
             Test.save(function(Err){
+              console.log(Test);
               console.log(Err);
             });
           }
-          
-        
         });
       }
     });

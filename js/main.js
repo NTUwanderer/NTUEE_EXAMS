@@ -13,7 +13,7 @@ var subjects = [
   ["電路學", "circuit", "images/circuit.jpg", false, false],
   ["工程數學-微分方程", "diff", "images/diff.jpg", false, false],
   ["交換電路與邏輯設計", "logic", "images/logic.jpg", false, false],
-  ["電子電路實驗一", "electrom2", "images/electrom2.jpg", false, false], //
+  ["電子電路實驗一", "eexp1", "images/electrom2.jpg", false, false], //
 
   ["電子學二", "electron2", "images/electron2.jpg", false, true],
   ["電磁學一", "electrom1", "images/electrom1.jpg", false, true],
@@ -24,7 +24,7 @@ var subjects = [
 
   ["電子學三", "electron3", "images/electron3.jpg", false, false],
   ["電磁學二", "electrom2", "images/electrom2.jpg", false, false],
-  ["電子電路實驗三", "electrom2", "images/electrom2.jpg", false, false], //
+  ["電子電路實驗三", "eexp3", "images/electrom2.jpg", false, false], //
 //Minor
   ["演算法", "algorithm", "images/electrom2.jpg", false, 3],
   ["生醫工程概論", "bioEng", "images/electrom2.jpg", false, 3],
@@ -49,13 +49,13 @@ var subjects = [
 var socket = io.connect();
 socket.emit('initial', {id: "b00000000"}, function(data){
   console.log("card init.", data);
-  if(data !== 'undefined'){
-    for(var i = 0; i < 25; i++){
+  /*if(data !== 'undefined'){
+    for(var i = 0; i < 30; i++){
       if(data[i] == true){
         add(document.getElementById(subjects[i][0]));
       }
     }
-  }
+  }*/
 });
 
 
@@ -145,12 +145,12 @@ function add(obj){
             var alltok = [];
               var quiz = document.createElement("a");
               quiz.setAttribute("style", "display: inline-block; margin-left: 15px; font-size: 20px");
-              quiz.setAttribute("onclick", "getQuiz(\"" + subjects[index][1] + "\")");
+              quiz.setAttribute("onclick", "getQuiz(\"" + subjects[index][1] + "\"" + "," + "\"-1\"" + ")");
               quiz.innerHTML = "quiz";
             alltok.push(wrapper(quiz, "0" + subjects[index][1], true));
               var exam = document.createElement("a");
               exam.setAttribute("style", "display: inline-block; margin-left: 15px; font-size: 20px");
-              exam.setAttribute("onclick", "getExam(\"" + subjects[index][1] + "\")");
+              exam.setAttribute("onclick", "getExam(\"" + subjects[index][1] + "\"" + "," + "\"-1\"" + ")");
               exam.innerHTML = "exam";
             alltok.push(wrapper(exam, "0" + subjects[index][1], true));
               var icon = document.createElement("i");
@@ -164,7 +164,7 @@ function add(obj){
             alltok.push(icon);
               for(var j = 0; j < examLink[i].quiz.length; j++){
                 var subquiz = document.createElement("a");
-                subquiz.setAttribute("onclick", "getQfile(\""+ subjects[index][1] + "\")");
+                subquiz.setAttribute("onclick", "getQfile(\""+ subjects[index][1] + "\"" + "," + j.toString() + ")");
                 subquiz.setAttribute("style", "margin-left: 15px; font-size: 18px");
                 subquiz.innerHTML = examLink[i].quiz[j].name;
                 alltok.push(wrapper(subquiz, "1q" + subjects[index][1], false));
@@ -172,17 +172,17 @@ function add(obj){
                   var link = document.createElement("a");
                   link.setAttribute("style", "padding: 3px");
                   link.innerHTML = examLink[i].quiz[j].file[k];
-                  var string = examLink[i].name + "@quiz_" + j.toString();
+                  var string = examLink[i].name + "@quiz-" + (j+1).toString();
                   string += "_" + examLink[i].quiz[j].file[k];
                   // string ex: biology_quiz_第一次小考_103-1
                   link.setAttribute("onclick", "add_in_right_bar(\"" + string + "\")");
                
-                  alltok.push(wrapper(link, "2q" + subjects[index][1], false));
+                  alltok.push(wrapper(link, "2q" + subjects[index][1] + j.toString(), false));
                 }
               }
               for(var j = 0; j < examLink[i].exam.length; j++){
                 var subexam = document.createElement("a");
-                subexam.setAttribute("onclick", "getEfile(\"" + subjects[index][1] + "\")");
+                subexam.setAttribute("onclick", "getEfile(\"" + subjects[index][1] + "\"" + "," + j.toString() + ")");
                 subexam.setAttribute("style", " margin-left: 15px; font-size: 18px");
                 subexam.innerHTML = examLink[i].exam[j].name;
                 alltok.push(wrapper(subexam, "1e" + subjects[index][1], false));
@@ -190,12 +190,12 @@ function add(obj){
                   var link = document.createElement("a");
                   link.innerHTML = examLink[i].exam[j].file[k];
                   link.setAttribute("style", "padding: 3px");
-                  var string = examLink[i].name + "@exam_" + j.toString();
+                  var string = examLink[i].name + "@exam-" + (j+1).toString();
                   string += "_" + examLink[i].exam[j].file[k];
                   // string ex: biology_quiz_第一次小考_103-1
                   link.setAttribute("onclick", "add_in_right_bar(\"" + string + "\")");
     
-                  alltok.push(wrapper(link, "2e" + subjects[index][1], false));
+                  alltok.push(wrapper(link, "2e" + subjects[index][1] + j.toString(), false));
                 }
               }
               for(var i = 0; i < alltok.length; i++){
@@ -343,8 +343,7 @@ function submit(){
 
   //var dataString = "";
   for(var i = 0; i < strings.length; ++i){
-    console.log(strings[i]);                                              // strings are all needed to be submitted
-    //dataString += strings[i] + " ";
+    console.log(strings[i]);                                    // strings are all needed to be submitted
   }
   socket.emit('submit', {id: "b00000000", data: strings}, function(goodStat, position){
     if(goodStat == 1){
@@ -377,14 +376,16 @@ function Back(str){
   var button = document.getElementById("icon" + str);
   button.style.display = "none";
 }
-function getQuiz(str){
+function getQuiz(str, num){
   var disa = document.getElementsByClassName("0" + str);
   for(var i = 0; i < disa.length; i++){
     disa[i].style.display = "none";
   }
-  var disa = document.getElementsByClassName("2q" + str);
-  for(var i = 0; i < disa.length; i++){
-    disa[i].style.display = "none";
+  if(num != "-1"){
+    var disa = document.getElementsByClassName("2q" + str + num);
+    for(var i = 0; i < disa.length; i++){
+      disa[i].style.display = "none";
+    }
   }
   var appe = document.getElementsByClassName("1q" + str);
   for(var i = 0; i < appe.length; i++){
@@ -395,14 +396,16 @@ function getQuiz(str){
   button.style.display = "inline-block";
   button.setAttribute("onclick", "Back(\"" + str + "\")");
 }
-function getExam(str){
+function getExam(str, num){
   var disa = document.getElementsByClassName("0" + str);
   for(var i = 0; i < disa.length; i++){
     disa[i].style.display = "none";
   }
-  var disa = document.getElementsByClassName("2e" + str);
-  for(var i = 0; i < disa.length; i++){
-    disa[i].style.display = "none";
+  if(num != "-1"){
+    var disa = document.getElementsByClassName("2e" + str + num);
+    for(var i = 0; i < disa.length; i++){
+      disa[i].style.display = "none";
+    }
   }
   var appe = document.getElementsByClassName("1e" + str);
   for(var i = 0; i < appe.length; i++){
@@ -413,33 +416,33 @@ function getExam(str){
   button.style.display = "inline-block";
   button.setAttribute("onclick", "Back(\"" + str + "\")");
 }
-function getQfile(str){
+function getQfile(str, num){
   var disa = document.getElementsByClassName("1q" + str);
   for(var i = 0; i < disa.length; i++){
     disa[i].style.display = "none";
   }
-  var appe = document.getElementsByClassName("2q" + str);
+  var appe = document.getElementsByClassName("2q" + str + num);
   for(var i = 0; i < appe.length; i++){
     appe[i].style.display = "flex";
     appe[i].style.display = "-webkit-flex";
   }
   var button = document.getElementById("icon" + str);
   button.style.display = "inline-block";
-  button.setAttribute("onclick", "getQuiz(\"" + str + "\")");
+  button.setAttribute("onclick", "getQuiz(\"" + str + "\"" + "," + num + ")");
 }
-function getEfile(str){
+function getEfile(str, num){
   var disa = document.getElementsByClassName("1e" + str);
   for(var i = 0; i < disa.length; i++){
     disa[i].style.display = "none";
   }
-  var appe = document.getElementsByClassName("2e" + str);
+  var appe = document.getElementsByClassName("2e" + str + num);
   for(var i = 0; i < appe.length; i++){
     appe[i].style.display = "flex";
     appe[i].style.display = "-webkit-flex";
   }
   var button = document.getElementById("icon" + str);
   button.style.display = "inline-block";
-  button.setAttribute("onclick", "getExam(\"" + str + "\")");
+  button.setAttribute("onclick", "getExam(\"" + str + "\"" + "," + num + ")");
 }
 
 function wrapper(obj, classN, display){
