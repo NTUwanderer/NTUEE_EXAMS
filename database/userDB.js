@@ -61,8 +61,14 @@ module.exports = {
           reqFiles += fileDIR[0] + '/' + fileDIR[0] + '_' + fileDIR[1] + '.pdf' + ' ';
         }
         var zipFile = '../' + zipDIR + obj.id + '.zip';
-        child_ps.exec('rm -f ' + zipFile);
-          child_ps.exec(
+        console.log('rm -f ' + zipDIR + obj.id + '.zip');
+        child_ps.exec('rm -f ' + zipDIR + obj.id + '.zip',
+          function (error, stdout, stderr) {
+            console.log('stdout: ' + stdout);
+            console.log('stderr: ' + stderr);
+          }
+        );
+        child_ps.exec(
             'cd ' + examDIR +' && zip ' + zipFile + reqFiles,
             function (error, stdout, stderr) {
               console.log('stdout: ' + stdout);
@@ -75,7 +81,7 @@ module.exports = {
                 var a = 1;
                 callback(a, zipFile);
               });
-          });
+            });
       });
     });
   }
