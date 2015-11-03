@@ -449,7 +449,9 @@ function wrapper(obj, classN, display){
   var wrap = document.createElement("div");
   wrap.setAttribute("class", classN + " Flex");
   if(display){
-    wrap.setAttribute("style", "display: flex -webkit-flex; align-items: center");
+    wrap.setAttribute("style", "align-items: center");
+    wrap.style.display = "flex";
+    wrap.style.display = "-webkit-flex";
   }
   else{
     wrap.setAttribute("style", "display: none; align-items: center");
