@@ -114,7 +114,7 @@ function add(obj){
 				
 				var icon_out = document.createElement("i");
 				icon_out.setAttribute("class", "material-icons right");
-				icon_out.setAttribute("style", "position: relative; top:10px;");
+				icon_out.setAttribute("style", "position: relative; top:10px; cursor: pointer;");
 				icon_out.innerHTML = "close";
 				icon_out.onclick = function(){
 					var temp = document.getElementById("card: " + subjects[index][0]);
@@ -144,12 +144,12 @@ function add(obj){
             block.setAttribute("class", "card-block");
             var alltok = [];
               var quiz = document.createElement("a");
-              quiz.setAttribute("style", "display: inline-block; margin-left: 15px; font-size: 20px");
+              quiz.setAttribute("style", "display: inline-block; margin-left: 15px; font-size: 20px; cursor: pointer");
               quiz.setAttribute("onclick", "getQuiz(\"" + subjects[index][1] + "\"" + "," + "\"-1\"" + ")");
               quiz.innerHTML = "quiz";
             alltok.push(wrapper(quiz, "0" + subjects[index][1], true));
               var exam = document.createElement("a");
-              exam.setAttribute("style", "display: inline-block; margin-left: 15px; font-size: 20px");
+              exam.setAttribute("style", "display: inline-block; margin-left: 15px; font-size: 20px; cursor: pointer");
               exam.setAttribute("onclick", "getExam(\"" + subjects[index][1] + "\"" + "," + "\"-1\"" + ")");
               exam.innerHTML = "exam";
             alltok.push(wrapper(exam, "0" + subjects[index][1], true));
@@ -160,17 +160,18 @@ function add(obj){
               icon.style.top = "calc(100% - 24px)";
               icon.style.left = "calc(100% - 27px)";
               icon.style.display = "none";
+              icon.style.cursor = "pointer";
               icon.innerHTML = "keyboard_return";
             alltok.push(icon);
               for(var j = 0; j < examLink[i].quiz.length; j++){
                 var subquiz = document.createElement("a");
                 subquiz.setAttribute("onclick", "getQfile(\""+ subjects[index][1] + "\"" + "," + j.toString() + ")");
-                subquiz.setAttribute("style", "margin-left: 15px; font-size: 18px");
+                subquiz.setAttribute("style", "margin-left: 15px; font-size: 18px; cursor: pointer");
                 subquiz.innerHTML = examLink[i].quiz[j].name;
                 alltok.push(wrapper(subquiz, "1q" + subjects[index][1], false));
                 for(var k = 0; k < examLink[i].quiz[j].file.length; k++){
                   var link = document.createElement("a");
-                  link.setAttribute("style", "padding: 3px");
+                  link.setAttribute("style", "padding: 3px; cursor: pointer");
                   link.innerHTML = examLink[i].quiz[j].file[k];
                   var string = examLink[i].name + "@quiz-" + (j+1).toString();
                   string += "_" + examLink[i].quiz[j].file[k];
@@ -183,13 +184,13 @@ function add(obj){
               for(var j = 0; j < examLink[i].exam.length; j++){
                 var subexam = document.createElement("a");
                 subexam.setAttribute("onclick", "getEfile(\"" + subjects[index][1] + "\"" + "," + j.toString() + ")");
-                subexam.setAttribute("style", " margin-left: 15px; font-size: 18px");
+                subexam.setAttribute("style", " margin-left: 15px; font-size: 18px; cursor: pointer");
                 subexam.innerHTML = examLink[i].exam[j].name;
                 alltok.push(wrapper(subexam, "1e" + subjects[index][1], false));
                 for(var k = 0; k < examLink[i].exam[j].file.length; k++){
                   var link = document.createElement("a");
                   link.innerHTML = examLink[i].exam[j].file[k];
-                  link.setAttribute("style", "padding: 3px");
+                  link.setAttribute("style", "padding: 3px; cursor: pointer");
                   var string = examLink[i].name + "@exam-" + (j+1).toString();
                   string += "_" + examLink[i].exam[j].file[k];
                   // string ex: biology_quiz_第一次小考_103-1
@@ -302,7 +303,7 @@ function add_in_right_bar(string){
       li.setAttribute("style", "height: 30px;");
   			var icon_out = document.createElement("i");
 			  icon_out.setAttribute("class", "material-icons left red-text waves-effect waves-light");
-			  icon_out.setAttribute("style", "position: relative; display: inline-block; float: left; padding: 0px; margin: 0px;");
+			  icon_out.setAttribute("style", "position: relative; display: inline-block; float: left; padding: 0px; margin: 0px; cursor: pointer");
 			  icon_out.innerHTML = "close";
 			    icon_out.onclick=function(){
 				    right_bar.removeChild(li);
@@ -310,7 +311,7 @@ function add_in_right_bar(string){
 		  li.appendChild(icon_out);
   			var a = document.createElement("a");
   			//a.setAttribute("class", "left");
-        a.setAttribute("style", "line-height: 26px;");
+        a.setAttribute("style", "line-height: 26px; cursor: default; color: black; padding-left: 3px;");
   			a.innerHTML = string;
   		li.appendChild(a);
   	right_bar.appendChild(li);

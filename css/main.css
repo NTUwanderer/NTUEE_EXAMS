@@ -17,3 +17,15 @@
   height: 80%;
   padding: 0px;
 }
+
+.first {
+  cursor: pointer;
+}
+
+.second {
+  cursor: pointer;
+}
+
+.none {
+  cursor: pointer;
+}
