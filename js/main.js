@@ -13,7 +13,7 @@ var subjects = [
   ["電路學", "circuit", "images/circuit.jpg", false, false],
   ["工程數學-微分方程", "diff", "images/diff.jpg", false, false],
   ["交換電路與邏輯設計", "logic", "images/logic.jpg", false, false],
-  ["電子電路實驗一", "eexp1", "images/electrom2.jpg", false, false], //
+  ["電子電路實驗一", "eexp1", "images/eexp1.jpg", false, false], //
 
   ["電子學二", "electron2", "images/electron2.jpg", false, true],
   ["電磁學一", "electrom1", "images/electrom1.jpg", false, true],
@@ -24,7 +24,7 @@ var subjects = [
 
   ["電子學三", "electron3", "images/electron3.jpg", false, false],
   ["電磁學二", "electrom2", "images/electrom2.jpg", false, false],
-  ["電子電路實驗三", "eexp3", "images/electrom2.jpg", false, false], //
+  ["電子電路實驗三", "eexp3", "images/eexp3.jpg", false, false], //
 //Minor
   ["演算法", "algorithm", "images/algorithm.jpg", false, 3],
   ["生醫工程概論", "bioEng", "images/bioEng.jpg", false, 3],
