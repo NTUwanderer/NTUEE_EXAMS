@@ -121,8 +121,9 @@ module.exports = {
         });
       }
     });
-    
-	}
-	
+	},
+  clear : function(){
+    database.remove({},function(err){console.log("Remove all exams.");});
+  }
 }
   // vim: set ts=2 sw=2 sts=2 tw=0 et :
