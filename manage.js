@@ -13,7 +13,7 @@ if((process.argv).length > 2){
   }
   else if(cmd == '--allexam'){
     examDB.getExams(function(exams){
-      console.log("I get the exams from DB :", exams);
+//      console.log("I get the exams from DB :", exams);
     });
   }
   else if(cmd == '--build'){
