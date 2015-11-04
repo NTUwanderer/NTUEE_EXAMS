@@ -26,19 +26,19 @@ var subjects = [
   ["電磁學二", "electrom2", "images/electrom2.jpg", false, false],
   ["電子電路實驗三", "eexp3", "images/electrom2.jpg", false, false], //
 //Minor
-  ["演算法", "algorithm", "images/electrom2.jpg", false, 3],
-  ["生醫工程概論", "bioEng", "images/electrom2.jpg", false, 3],
-  ["計算機結構", "carch", "images/electrom2.jpg", false, 3],
-  ["電腦網路導論", "cnetwork", "images/electrom2.jpg", false, 3],
-  ["控制系統", "control", "images/electrom2.jpg", false, 3],
+  ["演算法", "algorithm", "images/algorithm.jpg", false, 3],
+  ["生醫工程概論", "bioEng", "images/bioEng.jpg", false, 3],
+  ["計算機結構", "carch", "images/carch.jpg", false, 3],
+  ["電腦網路導論", "cnetwork", "images/cnetwork.jpg", false, 3],
+  ["控制系統", "control", "images/control.jpg", false, 3],
   ["資料結構", "DSnP", "images/electrom2.jpg", false, 3],
-  ["微波系統導論", "microEng", "images/electrom2.jpg", false, 3],
-  ["近代物理", "mPhy", "images/electrom2.jpg", false, 3],
-  ["物件導向程式設計", "OOP", "images/electrom2.jpg", false, 3],
-  ["通訊原理", "PC", "images/electrom2.jpg", false, 3],
-  ["電力工程導論", "powerSys", "images/electrom2.jpg", false, 3],
-  ["半導體製程", "SCTech", "images/electrom2.jpg", false, 3],
-  ["積體電路設計", "VLSI", "images/electrom2.jpg", false, 3]
+  ["微波系統導論", "microEng", "images/microEng.jpg", false, 3],
+  ["近代物理", "mPhy", "images/mPhy.jpg", false, 3],
+  ["物件導向程式設計", "OOP", "images/OOP.jpg", false, 3],
+  ["通訊原理", "PC", "images/PC.jpg", false, 3],
+  ["電力工程導論", "powerSys", "images/powerSys.jpg", false, 3],
+  ["半導體製程", "SCTech", "images/SCTech.jpg", false, 3],
+  ["積體電路設計", "VLSI", "images/VLSI.jpg", false, 3]
 
   ];
 
@@ -96,22 +96,27 @@ function add(obj){
       var card_image = document.createElement("div");
       card_image.setAttribute("class", "card-image waves-effect waves-block waves-light");
         var img = document.createElement("img");
-        img.setAttribute("class", "size-Subject");
+        img.setAttribute("class", "activator");
         img.setAttribute("src", subjects[index][2]);
       card_image.appendChild(img);
     card.appendChild(card_image);
       var card_content = document.createElement("div");
       card_content.setAttribute("class", "card-content");
         var card_title = document.createElement("span");
-        card_title.setAttribute("class", "card-title activator grey-text text-darken-4");
+        card_title.setAttribute("class", "card-title grey-text text-darken-4");
         card_title.innerHTML = obj.innerHTML; // need to be dynamic
           var icon = document.createElement("i");
-          icon.setAttribute("class", "material-icons right");
+          icon.setAttribute("class", "material-icons right red-text");
           icon.setAttribute("style", "position: relative; top: 10px;")
-          icon.innerHTML = "more_vert";
+          icon.innerHTML = "close";
+          icon.onclick = function(){
+			var temp = document.getElementById("card: " + subjects[index][0]);
+			if(temp != null)	main_container.removeChild(temp);
+			subjects[index][3] = false;
+			}
         card_title.appendChild(icon);
 	card_content.appendChild(card_title);
-				
+			/*
 				var icon_out = document.createElement("i");
 				icon_out.setAttribute("class", "material-icons right");
 				icon_out.setAttribute("style", "position: relative; top:10px; cursor: pointer;");
@@ -122,7 +127,7 @@ function add(obj){
 					subjects[index][3] = false;
 				}
 			card_content.appendChild(icon_out);
-			
+			*/
 		card.appendChild(card_content);
     
     var card_reveal = document.createElement("div");
