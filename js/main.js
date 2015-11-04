@@ -107,7 +107,7 @@ function add(obj){
         card_title.innerHTML = obj.innerHTML; // need to be dynamic
           var icon = document.createElement("i");
           icon.setAttribute("class", "material-icons right red-text");
-          icon.setAttribute("style", "position: relative; top: 10px;")
+          icon.setAttribute("style", "position: relative; top: 10px; cursor: pointer")
           icon.innerHTML = "close";
           icon.onclick = function(){
 			var temp = document.getElementById("card: " + subjects[index][0]);
