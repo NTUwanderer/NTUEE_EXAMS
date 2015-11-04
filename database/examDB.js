@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var map = require("./examMap.js");
 var exec = require('child_process').exec;
 
-mongoose.connect('mongodb://localhost:27017/exams');
+mongoose.connect('mongodb://localhost:27017/ntuee-exam');
 
 var Schema = mongoose.Schema;
 var exam = new Schema({
@@ -23,7 +23,7 @@ exam.post('save', function(user){
 })
 
 //mongoose model
-var database = mongoose.model('ALL_EXAMS', exam);
+var database = mongoose.model('exams', exam);
 
 //database.remove({},function(err){console.log("remove");});;
 /*var Test = new database();

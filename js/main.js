@@ -1,6 +1,5 @@
 var nameMap = new Map();
 
-console.log("In main.js get examLink:", examLink);
 
 var subjects = [
   // 中文,       English,    image location,        on screen, 上學期: false
@@ -47,8 +46,10 @@ var subjects = [
   }
 
 var socket = io.connect();
-socket.emit('initial', {id: "b00000000"}, function(data){
-  console.log("card init.", data);
+socket.emit('initial', {id: "b00000000"}, function(data, exams){
+  //console.log("card init.", data);
+  //console.log("exams init.", exams);
+  examLink = exams;
   /*if(data !== 'undefined'){
     for(var i = 0; i < 30; i++){
       if(data[i] == true){
@@ -56,6 +57,7 @@ socket.emit('initial', {id: "b00000000"}, function(data){
       }
     }
   }*/
+  //console.log("In main.js get examLink:", examLink);
 });
 
 
@@ -333,6 +335,30 @@ function enableCols(){
   });
 }
 
+function b64toBlob(b64Data, contentType, sliceSize) {
+  contentType = contentType || '';
+  sliceSize = sliceSize || 512;
+
+  var byteCharacters = atob(b64Data);
+  var byteArrays = [];
+
+  for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+    var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+    var byteNumbers = new Array(slice.length);
+    for (var i = 0; i < slice.length; i++) {
+      byteNumbers[i] = slice.charCodeAt(i);
+    }
+
+    var byteArray = new Uint8Array(byteNumbers);
+
+    byteArrays.push(byteArray);
+  }
+
+  var blob = new Blob(byteArrays, {type: contentType});
+  return blob;
+}
+
 function submit(){
   document.getElementById("btn-submit").disabled = true;
   var strings = [];
@@ -351,12 +377,16 @@ function submit(){
   for(var i = 0; i < strings.length; ++i){
     console.log(strings[i]);                                    // strings are all needed to be submitted
   }
-  socket.emit('submit', {id: "b00000000", data: strings}, function(goodStat, position){
+  socket.emit('submit', {id: "b00000000", data: strings}, function(goodStat, data){
     if(goodStat == 1){
       console.log("Start download.");
-      var download = document.getElementById('for_download');
+      //console.log("data : ", data);
+      var blob = b64toBlob(data, "application/octet-stream");
+
+      saveAs(blob, "b00000000.zip");
+      /*var download = document.getElementById('for_download');
       download.href = position;
-      download.click();
+      download.click();*/
     }
   });
 }
