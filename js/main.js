@@ -30,7 +30,7 @@ var subjects = [
   ["生醫工程概論", "bioEng", "images/electrom2.jpg", false, 3],
   ["計算機結構", "carch", "images/electrom2.jpg", false, 3],
   ["電腦網路導論", "cnetwork", "images/electrom2.jpg", false, 3],
-  ["自動控制", "control", "images/electrom2.jpg", false, 3],
+  ["控制系統", "control", "images/electrom2.jpg", false, 3],
   ["資料結構", "DSnP", "images/electrom2.jpg", false, 3],
   ["微波系統導論", "microEng", "images/electrom2.jpg", false, 3],
   ["近代物理", "mPhy", "images/electrom2.jpg", false, 3],
