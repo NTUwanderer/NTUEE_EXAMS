@@ -209,7 +209,6 @@ function add_in_right_bar(string){
 			  icon_out.setAttribute("style", "position: relative; display: inline-block; float: left; padding: 0px; margin: 0px; cursor: pointer");
 			  icon_out.innerHTML = "close";
 			    icon_out.onclick=function(){
-				    right_bar.removeChild(li);
 			    }
 		  li.appendChild(icon_out);
   			var a = document.createElement("a");

@@ -5,6 +5,12 @@ var JSzip = require('jszip');
 
 mongoose.connect('mongodb://localhost:27017/ntuee-exam');
 
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log('connection succeeded.');
+});
+
 var Schema = mongoose.Schema;
 
 var user = new Schema({
@@ -13,7 +19,7 @@ var user = new Schema({
  ,content : {type: Array, default: create()}
 });
 user.post('save', function(user){
-  console.log("user : " ,user ," has been saved. ");
+  console.log("user : " , user ," has been saved. ");
 });
 
 var exam = new Schema({
@@ -65,19 +71,21 @@ module.exports = {
         console.log("Get initial.");
         var init;
         Users.findOne({id : data.id}, function(err, obj){
-          if(err){console.log(err);}
-          init = obj.content;
-          Exams.find({}, 'name quiz exam', function(err, exams){
-            if(err){console.log(err);}
-            exams.forEach(function(i){
-              //console.log("find: ", i);
-              /*console.log("\n");
-              console.log("name: ", i.name);
-              console.log("quiz: ", i.quiz);
-              console.log("exam: ", i.exam);*/
+          if (err) {console.log(err);}
+          else if (obj != null) {
+            init = obj.content;
+            Exams.find({}, 'name quiz exam', function(err, exams){
+              if(err){console.log(err);}
+              exams.forEach(function(i){
+                //console.log("find: ", i);
+                /*console.log("\n");
+                console.log("name: ", i.name);
+                console.log("quiz: ", i.quiz);
+                console.log("exam: ", i.exam);*/
+              });
+              callback(init, exams);
             });
-            callback(init, exams);
-          });
+          }
         });
       });
       socket.on('submit', function(obj, callback){
