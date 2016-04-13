@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button, Card, Row, Col, Collapsible} from 'react-materialize';
-
+import examLink from '../examLink';
 class View extends React.Component {
 	constructor() {
 		super();
@@ -9,6 +9,8 @@ class View extends React.Component {
 		};
 		this.clickOnSubject = this.clickOnSubject.bind(this);
 		this.changeSemester = this.changeSemester.bind(this);
+		console.log("examLink: ");
+		console.log(examLink);
 	}
 	clickOnSubject(subjectName) {
 		console.log("clickOnSubject: " + subjectName);

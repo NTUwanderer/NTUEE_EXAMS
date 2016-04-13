@@ -74,6 +74,7 @@ module.exports = {
           if (err) {console.log(err);}
           else if (obj != null) {
             init = obj.content;
+            console.log(init);
             Exams.find({}, 'name quiz exam', function(err, exams){
               if(err){console.log(err);}
               exams.forEach(function(i){
