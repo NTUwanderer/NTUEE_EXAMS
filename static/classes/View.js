@@ -19,11 +19,15 @@ class View extends React.Component {
 			examLink[i].appear = false;
 		this.state = {
 			semester: false,
-			exams: examLink
+			exams: examLink,
+			chosen: []
 		};
 		this.clickOnSubject = this.clickOnSubject.bind(this);
 		this.changeSemester = this.changeSemester.bind(this);
 		this.examsMap = this.examsMap.bind(this);
+		this.choosePdf = this.choosePdf.bind(this);
+		this.deletePdfHandler = this.deletePdfHandler.bind(this);
+		this.deletePdf = this.deletePdf.bind(this);
 		console.log("examLink: ");
 		console.log(examLink);
 	}
@@ -32,7 +36,7 @@ class View extends React.Component {
 		let exams = this.state.exams;
 		for (let i = 0, length = exams.length; i < length; ++i) {
 			if (exams[i].name === subjectName) {
-				exams[i].appear = true;
+				exams[i].appear = !(exams[i].appear);
 				this.setState({exams: exams});
 				break;
 			}
@@ -44,9 +48,39 @@ class View extends React.Component {
 	}
 	examsMap(exam) {
 		if (exam.appear) {
-			return (<ExamCard key={exam.name} data={exam} />);
+			return (<ExamCard key={exam.name} data={exam} choose={this.choosePdf} />);
 		}
 		return null;
+	}
+	choosePdf(subject, typ, idx, year) {
+		let string = subject + '@' + typ + '_' + '-' + idx + '_' + year,
+			chosen = this.state.chosen,
+			find = false;
+		for (let i = 0, length = chosen.length; i < length; ++i) {
+			if (chosen[i] === string) {
+				find = true;
+				break;
+			}
+		}
+		if (!find)	chosen.push(string);
+		this.setState({chosen: chosen});
+	}
+	deletePdf(string) {
+		let chosen = this.state.chosen;
+		for (let i = 0, length = chosen.length; i < length; ++i) {
+			if (chosen[i] === string) {
+				chosen.splice(i, 1);
+				break;
+			}
+		}
+		this.setState({chosen: chosen});
+	}
+	deletePdfHandler(string) {
+		function func() {
+	      this.deletePdf(string);
+	    }
+	    func = func.bind(this);
+	    return func;
 	}
 	getTitle(i) {
 		if (i === 0)	return "大一必修";
@@ -105,10 +139,17 @@ class View extends React.Component {
 			            	{
 			            		this.state.exams.map(this.examsMap)
 			            	}
-			              <div className="col hide-on-small-only m3 l2" style={{marginTop: 2.5, paddingLeft:0, position: "absolute", top: 5 + '%', right: 5 + '%', width: 24 + '%'}}>
+			              <div className="col hide-on-small-only m3 l2" style={{marginTop: 2.5, paddingLeft:0, position: "relative", float: "right", width: 26 + '%'}}>
 			                <div style={{height: 1}}>
 			                  <ul id="right_bar" className="section " style={{marginTop: 2.5 + '%', marginRight: 0, marginBottom: 0, marginLeft: 0, padding: 0}}>
 			    				<button id="btn-submit" className="btn waves-effect waves-light" style={{width: 90 + '%', marginBottom: 10}} onclick="submit()">Download<i className="material-icons right">send</i></button>
+			                  	{
+			                  		this.state.chosen.map(item => (
+			                  			<li style={{height: 30}}>
+			                  				<i onClick={this.deletePdfHandler(item)} className="material-icons left red-text waves-effect waves-light" style={{position: 'relative', display: 'inline-block', float: 'left', padding: 0, margin: 0, cursor: 'pointer'}}>close</i>
+			                  				<a style={{lineHeight: 26 + 'px', cursor: 'default', color: 'black', paddingLeft: 3}}>{item}</a>
+			                  			</li>))
+			                  	}
 			                  </ul>
 			                </div>
 			              </div>
@@ -230,6 +271,7 @@ class ExamCard extends React.Component {
     return res;
   }
   download(typ, idx, year) {
+  	this.props.choose(this.props.data.name, typ, idx, year);
     return console.log("Download = " + typ + ", " + idx + ", " + year);
   }
   render() {
@@ -288,8 +330,9 @@ class ExamCard extends React.Component {
         };
       })(this)));
     }
+    	
     return (
-	    <Col m={4} s={12} style={{position: 'relative', display: 'inline-block', marginTop: 2.5 + '%' , marginRight: 0, marginBottom: 0, marginLeft: 2.5 + '%', width: 33 + '%'}}>
+	    <Col m={4} s={12} style={{position: 'relative', display: 'inline-block', marginTop: 2.5 + '%' , marginRight: 0, marginBottom: 0, marginLeft: 2.5 + '%', width: 33 + '%', height: 40 + '%'}}>
 		    <Card textClassName='black-text' title={ex.name}>
 		    	<div className="breadcol" style={{lineHeight: 40 + "px"}}>
 			    	<a className={breadItemClass} onClick={

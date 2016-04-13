@@ -194,8 +194,6 @@ function add(obj){
   }
 }
 function add_in_right_bar(string){
-
-	
   // string ex: biology_quiz_第一次小考_103-1
 	var element = document.getElementById("li: " + string);
 	if(element == null){
