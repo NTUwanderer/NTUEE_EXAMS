@@ -18,12 +18,12 @@ if((process.argv).length > 2){
   }
   else if(cmd == '--build'){
     examDB.getExams(function(exams){
-      fs.open('js/examLink.js', 'w', function(err){
+      fs.open('static/js/examLink.js', 'w', function(err){
         if(err) throw err;
-        console.log("js/examLink.js is open.");
+        console.log("static/js/examLink.js is open.");
 
         var string = "var examLink = JSON.parse(\'" + JSON.stringify(exams) + "\');";
-        fs.writeFile('js/examLink.js', string, 'utf8', function(err){
+        fs.writeFile('static/js/examLink.js', string, 'utf8', function(err){
           if(err) throw err;
           console.log('It\'s saved!');
         });

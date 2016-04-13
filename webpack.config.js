@@ -3,9 +3,9 @@ var webpack = require('webpack');
 
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
-  entry: './js/entry',  // 進入點
+  entry: './static/entry',  // 進入點
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, 'static'),
     filename: 'bundle.js',  // 輸出的檔案名稱
   },
   module: {
