@@ -100,7 +100,7 @@ class ExamCard extends React.Component {
       })(this)));
     }
     return (
-    <Col m={4} s={12} style={{position: 'relative', display: 'inline-block', marginTop: 2.5 + '%' , marginRight: 0, marginBottom: 0, marginLeft: 2.5 + '%', width: 33 + '%', height: 40 + '%'}}>
+    <Col m={4} s={12} style={{overflow: 'auto', position: 'relative', display: 'inline-block', marginTop: 2.5 + '%' , marginRight: 0, marginBottom: 0, marginLeft: 2.5 + '%', width: 33 + '%', height: 60 + 'vh'}}>
         <div className="card">
           <div className="card-content black-text">
             <span className="card-title">

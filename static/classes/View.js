@@ -81,6 +81,7 @@ class View extends React.Component {
 	submit() {
 		console.log("submit clicked...");
 		let strings = this.state.chosen;
+		if (strings.length === 0)	return;
 		socket.emit('submit', {id: "b00000000", data: strings}, function(goodStat, data){
 		    if(goodStat == 1){
 		      console.log("Start download.");
