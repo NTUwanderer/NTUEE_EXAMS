@@ -5,6 +5,9 @@ import examLink from '../js/examLink';
 import Grade from './Grade';
 import ExamCard from './ExamCard';
 
+console.log(io);
+var socket = io.connect();
+
 class View extends React.Component {
 	constructor() {
 		super();
@@ -34,7 +37,7 @@ class View extends React.Component {
 				this.setState({exams: exams});
 				break;
 			}
-		}
+		} 
 	}
 	changeSemester(event) {
 		this.setState({semester: !this.state.semester});
@@ -46,7 +49,7 @@ class View extends React.Component {
 		return null;
 	}
 	choosePdf(subject, typ, idx, year) {
-		let string = subject + '@' + typ + '_' + '-' + idx + '_' + year,
+		let string = subject + '@' + typ + '-' + (idx + 1) + '_' + year,
 			chosen = this.state.chosen,
 			find = false;
 		for (let i = 0, length = chosen.length; i < length; ++i) {
