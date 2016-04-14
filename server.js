@@ -17,7 +17,3 @@ app.get('/', function(req, res){
 });
 
 userDB.runSocket(io);
-
-var testing = require("./static/js/examLink.js");
-
-console.log(testing);
