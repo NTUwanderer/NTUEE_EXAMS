@@ -100,7 +100,7 @@ class ExamCard extends React.Component {
       })(this)));
     }
     return (
-    <Col m={4} s={12} style={{overflow: 'auto', position: 'relative', display: 'inline-block', marginTop: 2.5 + '%' , marginRight: 0, marginBottom: 0, marginLeft: 2.5 + '%', width: 33 + '%', height: 60 + 'vh'}}>
+    <Col m={4} s={12} style={{overflow: 'auto', position: 'relative', display: 'inline-block', marginTop: 2.5 + '%' , marginRight: 0, marginBottom: 0, marginLeft: 2.5 + '%', width: 33 + '%', height: 40 + 'vh'}}>
         <div className="card">
           <div className="card-content black-text">
             <span className="card-title">
@@ -135,36 +135,6 @@ class ExamCard extends React.Component {
         </div>
     </Col>
     );
-    return (
-	    <Col m={4} s={12} style={{position: 'relative', display: 'inline-block', marginTop: 2.5 + '%' , marginRight: 0, marginBottom: 0, marginLeft: 2.5 + '%', width: 33 + '%', height: 40 + '%'}}>
-		    <Card textClassName='black-text' title={ex.name}>
-		    	<div className="breadcol" style={{lineHeight: 40 + "px"}}>
-			    	<a className={breadItemClass} onClick={
-			    		(function(_this) {
-					        return function() {
-					          return _this.navPop(0);
-					        };
-					    })(this)
-			    	}>home</a>
-			    	{
-			    		this.getLocName().map((function(_this) {
-					      return function(x, i) {
-					        return ahref({
-					          className: breadItemClass,
-					          onClick: function() {
-					            return _this.navPop(i + 1);
-					          }
-					        }, x);
-					      };
-					    })(this))
-			    	}
-			    </div>
-			    {
-			    	panel
-			    }
-		    </Card>
-		</Col>);
-    
   }
 }
 

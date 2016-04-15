@@ -4,6 +4,7 @@
   "description": "initial version",
   "main": "server.js",
   "dependencies": {
+    "classnames": "^2.2.3",
     "css-loader": "^0.23.1",
     "express": "^4.13.3",
     "jszip": "^2.5.0",

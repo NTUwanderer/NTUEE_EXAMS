@@ -1,5 +1,7 @@
 import React from 'react';
 import {Button} from 'react-materialize';
+import classNames from 'classnames';
+
 import examLink from '../js/examLink';
 
 import Grade from './Grade';
@@ -153,7 +155,7 @@ class View extends React.Component {
 						  <div className="col hide-on-small-only m3 l2" style={{marginTop: 2.5, paddingLeft:0, position: "relative", float: "right", width: 26 + '%', marginTop: 5 + '%'}}>
 			                <div style={{height: 1}}>
 			                  <ul id="right_bar" className="section " style={{marginTop: 2.5 + '%', marginRight: 0, marginBottom: 0, marginLeft: 0, padding: 0}}>
-			    				<button className="btn waves-effect waves-light" style={{width: 90 + '%', marginBottom: 10}} onClick={this.submit}>Download<i className="material-icons right">send</i></button>
+			    				<button className={classNames('btn', 'waves-effect', 'waves-light', {'disabled': this.state.chosen.length === 0})} style={{width: 90 + '%', marginBottom: 10}} onClick={this.submit}>Download<i className="material-icons right">send</i></button>
 			                  	{
 			                  		this.state.chosen.map(item => (
 			                  			<li style={{height: 30}} key={item}>
